@@ -90,3 +90,29 @@ body {
     border-bottom: 0;
   }
 }
+
+// reset.scss
+
+
+
+// 项目scss
+
+article {
+  border: 1px solid green;
+  padding: 10px 20px; 
+
+  display: flex;
+}
+
+section {
+  border: 1px solid red;
+}
+.now {
+  border-color: lightblue;
+  flex: 0 1 auto;
+
+}
+
+.forcase {
+  flex: 1;
+}

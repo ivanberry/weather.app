@@ -2,9 +2,9 @@
 <html class="no-js" lang="">
   <head>
     <meta charset="utf-8">
-    <meta name="description" content="">
+    <meta name="description" content="天气预报">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>weathear app</title>
+    <title>天气预报</title>
 
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <!-- Place favicon.ico in the root directory -->
@@ -19,81 +19,69 @@
     <!-- endbuild -->
     
     <!-- build:js scripts/vendor/modernizr.js -->
-    <script src="/bower_components/modernizr/modernizr.js"></script>
     <!-- endbuild -->
   </head>
   <body>
     <!--[if lt IE 10]>
       <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-    
-    <div class="container">
-      <div class="header">
-        <ul class="nav nav-pills pull-right">
-          <li class="active"><a href="#">Home</a></li>
-          <li><a href="#">About</a></li>
-          <li><a href="#">Contact</a></li>
-        </ul>
-        <h3 class="text-muted">weathear app</h3>
-      </div>
+    <!-- 确定页面的基本结构 -->
+    <header>
+      <h2>不同的天气，不同的心情</h2>
+    </header>
+    <main>
+      <article>
+        <section class="now">
+        <!-- 查询 -->
+         <input name="weaher-now" type="text" id="js-getWeather">
+         <label name="weather-now" for="js-getWeather">查询</label> 
 
-      <div class="jumbotron">
-        <h1>'Allo, 'Allo!</h1>
-        <p class="lead">Always a pleasure scaffolding your apps.</p>
-        <p><a class="btn btn-lg btn-success" href="#">Splendid!</a></p>
-      </div>
+         <!-- 展示 -->
+         <div class="now-details">
+          <!-- 对应天气图标  -->
+           <img src="" alt="对应天气图标，需要动态变化" title="同天气图标，文字描述，满足适用性">
 
-      <div class="row marketing">
-        <div class="col-lg-6">
-          <h4>HTML5 Boilerplate</h4>
-          <p>HTML5 Boilerplate is a professional front-end template for building fast, robust, and adaptable web apps or sites.</p>
-          
-          <h4>Sass</h4>
-          <p>Sass is the most mature, stable, and powerful professional grade CSS extension language in the world.</p>
-          
-          <h4>Bootstrap</h4>
-          <p>Sleek, intuitive, and powerful mobile first front-end framework for faster and easier web development.</p>
-          <h4>Modernizr</h4>
-          <p>Modernizr is an open-source JavaScript library that helps you build the next generation of HTML5 and CSS3-powered websites.</p>
-          
-        </div>
-      </div>
+          <!-- 查询天气细节展示 -->
+           <div class="now-temperature">
+             <span class="now-number">28</span>
+             <span>摄氏度</span>
 
-      <div class="footer">
-        <p>♥ from the Yeoman team</p>
-      </div>
-    </div>
-    
-    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-    <script>
-      (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-      function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-      e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-      e.src='https://www.google-analytics.com/analytics.js';
-      r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-      ga('create','UA-XXXXX-X');ga('send','pageview');
-    </script>
+             <h3>湿度<span></span></h3>   
+             <h3>风级<span></span></h3>   
+             <h3>日照<span></span></h3>   
 
-    <!-- build:js scripts/vendor.js -->
-    <!-- bower:js -->
-    <!-- endbower -->
-    <!-- endbuild -->
-    
-    <!-- build:js scripts/plugins.js -->
-    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/affix.js"></script>
-    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/alert.js"></script>
-    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/dropdown.js"></script>
-    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/tooltip.js"></script>
-    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/modal.js"></script>
-    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/transition.js"></script>
-    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/button.js"></script>
-    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/popover.js"></script>
-    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/carousel.js"></script>
-    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/scrollspy.js"></script>
-    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/collapse.js"></script>
-    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/tab.js"></script>
-    <!-- endbuild -->
-    
+           </div>
+         </div>
+        </section>
+
+        <section class="forcase">
+          <!-- 天气预报预测数据展示图 -->
+          <div class="forcase-details">
+          <figure class="forcase-fivedays">
+            <caption>5天天气预报</caption>
+
+            <div class="forcase-fivedays__temprature">
+            <h3>温度趋势</h3>
+             <!-- 引入D3.js  -->
+            </div>
+
+            <div class="forcase-fivedays__winds">
+            <h3>风级趋势</h3>
+              <!-- 引入D3.js -->
+            </div>
+
+            <div class="forcase-fivedays__sun">
+            <h3>日照趋势</h3>
+              <!-- 引入D3.js -->
+            </div>
+          </figure>
+          </div>
+        </section>
+      </article>
+    </main>
+    <foote>
+      <h4>Powered by OpenWeather API and D3.js </h4>
+    </foote>
     <!-- build:js scripts/main.js -->
     <script src="scripts/main.js"></script>
     <!-- endbuild -->
