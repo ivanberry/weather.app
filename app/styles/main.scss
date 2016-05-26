@@ -94,22 +94,50 @@ body {
 // reset.scss
 @import 'typo';
 
+//design borders mixins
+@mixin border($color) {
+	border: 1px solid $color;
+}
+header, article, section, h2, h3, span, h4, p, div, figure, main, label, input {
+	@include border(green);
+	margin: 5px;
+}
 
-// 项目scss
+//colors
+$Primary_color: #2196F3;
+$Card_color: #bbdefb;
+
+$Text_primary_color: #fff;
+$Text_card_color: #000;
+
+
+ //weather.app scss
+
+header {
+	background-color: $Primary_color;
+	padding: 20px 10px;
+
+	//h2 header
+	h2 {
+		color: $Text_primary_color;
+	}
+
+}
 
 article {
-  border: 1px solid green;
-  padding: 10px 20px; 
+  padding: 10px 20px;
 
   display: flex;
 }
 
 section {
-  border: 1px solid red;
+
+	padding: 10px 20px;
+	margin-left: 10px;
 }
 .now {
-  border-color: lightblue;
-  flex: 0 1 auto;
+	background-color: $Card_color;
+	color: $Text_card_color;
 
 }
 
