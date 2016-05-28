@@ -1,4 +1,6 @@
 $icon-font-path: '../fonts/';
+$Body_font_size: 14px;
+$Line_height: 1.42858;
 
 // bower:scss
 // endbower
@@ -14,6 +16,8 @@ $icon-font-path: '../fonts/';
 body {
   padding-top: 20px;
   padding-bottom: 20px;
+  font-size: 14px;
+  line-height: 1.42858;
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
@@ -32,7 +36,6 @@ body {
   h3 {
     margin-top: 0;
     margin-bottom: 0;
-    line-height: 40px;
     padding-bottom: 19px;
   }
 }
@@ -91,7 +94,7 @@ body {
   }
 }
 
-// reset.scss
+/* // reset.scss */
 @import 'typo';
 
 //design borders mixins
@@ -99,23 +102,21 @@ body {
 	border: 1px solid $color;
 }
 header, article, section, h2, h3, span, h4, p, div, figure, main, label, input {
-	@include border(green);
-	margin: 20px 5px;
+	/*  @include border(green); */
+	margin: 10px 5px;
 }
 
 
-//colors
+/* colors */
 $Primary_color: #2196F3;
 $Card_color: #bbdefb;
 
 $Text_primary_color: #fff;
 $Text_card_color: #000;
 
-$Body_font_size: 14px;
-$Line_height: 1.42858;
 
 
- //weather.app scss
+ /* weather.app scss */
 
 * {
   padding: 0;
@@ -175,9 +176,18 @@ section {
     height: auto;
   }
 
-  .temp_details {
-    margin-left: 60px;
+  .flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
+  .temp_details {
+    flex: 1;
+    text-align: right;
+  }
+
+
+
 
 }
 

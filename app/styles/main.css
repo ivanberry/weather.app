@@ -8,7 +8,9 @@
 /* Space out content a bit */
 body {
   padding-top: 20px;
-  padding-bottom: 20px; }
+  padding-bottom: 20px;
+  font-size: 14px;
+  line-height: 1.42858; }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
@@ -24,7 +26,6 @@ body {
   .header h3 {
     margin-top: 0;
     margin-bottom: 0;
-    line-height: 40px;
     padding-bottom: 19px; }
 
 /* Custom page footer */
@@ -99,7 +100,7 @@ audio, canvas, video {
 
 /* 要注意表单元素并不继承父级 font 的问题 */
 body, button, input, select, textarea {
-  font: 300 1em/1.8 PingFang SC, Lantinghei SC, Microsoft Yahei, Hiragino Sans GB, Microsoft Sans Serif, WenQuanYi Micro Hei, sans; }
+  font: 300 1em/1.42858 PingFang SC, Lantinghei SC, Microsoft Yahei, Hiragino Sans GB, Microsoft Sans Serif, WenQuanYi Micro Hei, sans; }
 
 button::-moz-focus-inner,
 input::-moz-focus-inner {
@@ -351,8 +352,7 @@ h1, h2, h3, h4, h5, h6 {
   max-width: 100%; }
 
 header, article, section, h2, h3, span, h4, p, div, figure, main, label, input {
-  border: 1px solid green;
-  margin: 20px 5px; }
+  margin: 10px 5px; }
 
 * {
   padding: 0;
@@ -399,8 +399,13 @@ section {
     float: left;
     width: 50px;
     height: auto; }
+  .now .flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; }
   .now .temp_details {
-    margin-left: 60px; }
+    flex: 1;
+    text-align: right; }
 
 .forcase {
   flex: 1; }
