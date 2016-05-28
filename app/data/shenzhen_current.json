@@ -1,0 +1,45 @@
+{
+  "coord": {
+    "lon": 114.07,
+    "lat": 22.55
+  },
+  "weather": [
+    {
+      "id": 521,
+      "main": "Rain",
+      "description": "阵雨",
+      "icon": "09d"
+    }
+  ],
+  "base": "stations",
+  "main": {
+    "temp": 29.12,
+    "pressure": 1008,
+    "humidity": 94,
+    "temp_min": 27,
+    "temp_max": 32.78
+  },
+  "visibility": 10000,
+  "wind": {
+    "speed": 4.1,
+    "deg": 170
+  },
+  "rain": {
+    "1h": 2.79
+  },
+  "clouds": {
+    "all": 40
+  },
+  "dt": 1464402223,
+  "sys": {
+    "type": 1,
+    "id": 7904,
+    "message": 0.012,
+    "country": "CN",
+    "sunrise": 1464385165,
+    "sunset": 1464433369
+  },
+  "id": 1795565,
+  "name": "Shenzhen",
+  "cod": 200
+}

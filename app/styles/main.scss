@@ -100,8 +100,9 @@ body {
 }
 header, article, section, h2, h3, span, h4, p, div, figure, main, label, input {
 	@include border(green);
-	margin: 5px;
+	margin: 20px 5px;
 }
+
 
 //colors
 $Primary_color: #2196F3;
@@ -110,8 +111,37 @@ $Card_color: #bbdefb;
 $Text_primary_color: #fff;
 $Text_card_color: #000;
 
+$Body_font_size: 14px;
+$Line_height: 1.42858;
+
 
  //weather.app scss
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  font-size: $Body_font_size;
+  line-height: $Line_height;
+}
+
+.icon { 
+    display: inline-block; 
+    width:20px; height:20px; 
+    // background: ...; 
+    white-space:nowrap; 
+    letter-spacing: -1em; 
+    text-indent: -99em; 
+    color: transparent;
+    /* IE7 */
+    *text-indent: 0;
+    *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '\3000');
+}
+.icon:before {
+    content: '\3000'; 
+}
 
 header {
 	background-color: $Primary_color;
@@ -138,6 +168,16 @@ section {
 .now {
 	background-color: $Card_color;
 	color: $Text_card_color;
+
+  .weather-icon {
+    float: left;
+    width: 50px;
+    height: auto;
+  }
+
+  .temp_details {
+    margin-left: 60px;
+  }
 
 }
 

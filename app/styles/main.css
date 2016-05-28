@@ -352,7 +352,31 @@ h1, h2, h3, h4, h5, h6 {
 
 header, article, section, h2, h3, span, h4, p, div, figure, main, label, input {
   border: 1px solid green;
-  margin: 5px; }
+  margin: 20px 5px; }
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box; }
+
+body {
+  font-size: 14px;
+  line-height: 1.42858; }
+
+.icon {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  white-space: nowrap;
+  letter-spacing: -1em;
+  text-indent: -99em;
+  color: transparent;
+  /* IE7 */
+  *text-indent: 0;
+  *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '\3000'); }
+
+.icon:before {
+  content: '\3000'; }
 
 header {
   background-color: #2196F3;
@@ -371,6 +395,12 @@ section {
 .now {
   background-color: #bbdefb;
   color: #000; }
+  .now .weather-icon {
+    float: left;
+    width: 50px;
+    height: auto; }
+  .now .temp_details {
+    margin-left: 60px; }
 
 .forcase {
   flex: 1; }

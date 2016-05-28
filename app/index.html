@@ -7,31 +7,17 @@
     <title>天气预报</title>
 
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
-    <!-- Place favicon.ico in the root directory -->
-
-    <!-- build:css styles/vendor.css -->
-    <!-- bower:css -->
-    <!-- endbower -->
-    <!-- endbuild -->
-
-    <!-- build:css styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
-    <!-- endbuild -->
-    
-    <!-- build:js scripts/vendor/modernizr.js -->
-    <!-- endbuild -->
   </head>
   <body>
-    <!--[if lt IE 10]>
-      <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
-    <!-- 确定页面的基本结构 -->
+        <!-- 确定页面的基本结构 -->
     <header>
       <h2>不同的天气，不同的心情</h2>
     </header>
     <main>
       <article>
         <section class="now">
+        <h3 class="city-name"></h3>
         <!-- 查询 -->
          <input name="weaher-now" type="text" id="js-getWeather">
          <label name="weather-now" for="js-getWeather">查询</label> 
@@ -39,27 +25,30 @@
          <!-- 展示 -->
          <div class="now-details">
           <!-- 对应天气图标  -->
-           <img src="" alt="好天气,好心情" title="天气,数据中的描述">
+          <div>
+           <img class="icon weather-icon " src="" alt="好天气,好心情" title="天气,数据中的描述">
 
-	         <!--对应天气温度详情-->
-	         <div class="temp_details">
-		        <span class="now-number">28</span>
-                <span>摄氏度</span>
-	         </div>
+           <!--对应天气温度详情-->
+           <div class="temp_details">
+            <span class="now-number">28</span>
+                <span>℃</span>
+           </div> 
+          </div>
+           
 
           <!-- 查询天气细节展示 -->
-           <div class="now-temperature">
+           <div class="now-weather">
 
-             <h3>湿度<span></span></h3>   
-             <h3>风级<span></span></h3>   
+             <h3 class="now-humidity">湿度<span></span></h3>   
+             <h3 class="now-wind-speed">风级<span></span></h3>   
 
            </div>
 
          </div>
 
-	       <div class="data-description">
-		       <span>the time get the data</span>
-		       <p>data description about the weather now</p>
+	       <div class="now-description">
+		       <span class="data-get-time">the time get the data</span>
+		       <p class="data-description">data description about the weather now</p>
 	       </div>
 
         </section>
@@ -93,8 +82,6 @@
       <h4>Powered by OpenWeather API and D3.js </h4>
     </footer>
     <script src="scripts/jquery.min.js"></script>
-    <!-- build:js scripts/main.js -->
     <script src="scripts/main.js"></script>
-    <!-- endbuild -->
   </body>
 </html>
