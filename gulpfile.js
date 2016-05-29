@@ -1,4 +1,4 @@
-// generated on 2016-05-14 using generator-webapp 2.1.0
+// generated on 2016-05-28 using generator-webapp 2.1.0
 const gulp = require('gulp');
 const gulpLoadPlugins = require('gulp-load-plugins');
 const browserSync = require('browser-sync');
@@ -11,12 +11,12 @@ const reload = browserSync.reload;
 gulp.task('styles', () => {
   return gulp.src('app/styles/*.scss')
     .pipe($.plumber())
-    //.pipe($.sourcemaps.init())
-    //.pipe($.sass.sync({
-     // outputStyle: 'expanded',
-      //precision: 10,
-      //includePaths: ['.']
-    //i}).on('error', $.sass.logError))
+    .pipe($.sourcemaps.init())
+    .pipe($.sass.sync({
+      outputStyle: 'expanded',
+      precision: 10,
+      includePaths: ['.']
+    }).on('error', $.sass.logError))
     .pipe($.autoprefixer({browsers: ['> 1%', 'last 2 versions', 'Firefox ESR']}))
     .pipe($.sourcemaps.write())
     .pipe(gulp.dest('.tmp/styles'))
@@ -96,12 +96,15 @@ gulp.task('extras', () => {
 
 gulp.task('clean', del.bind(null, ['.tmp', 'dist']));
 
-gulp.task('serve', ['styles', 'scripts'], () => {
+gulp.task('serve', ['styles', 'scripts', 'fonts'], () => {
   browserSync({
     notify: false,
-    port: 43251,
+    port: 9000,
     server: {
-      baseDir: ['.tmp', 'app']
+      baseDir: ['.tmp', 'app'],
+      routes: {
+        '/bower_components': 'bower_components'
+      }
     }
   });
 
@@ -114,7 +117,7 @@ gulp.task('serve', ['styles', 'scripts'], () => {
   gulp.watch('app/styles/**/*.scss', ['styles']);
   gulp.watch('app/scripts/**/*.js', ['scripts']);
   gulp.watch('app/fonts/**/*', ['fonts']);
-  // gulp.watch('bower.json', ['wiredep', 'fonts']);
+  gulp.watch('bower.json', ['wiredep', 'fonts']);
 });
 
 gulp.task('serve:dist', () => {
