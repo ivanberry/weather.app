@@ -81,3 +81,7 @@ function dateConventor(UNIX_stamps) {
 		return time = dates.join('-') + ' ' + times.join(':');
 }
 
+// 定义一个插入天气块的函数
+// 定义动画
+// D3.js学习
+
