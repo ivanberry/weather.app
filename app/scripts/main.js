@@ -1,26 +1,24 @@
 // 默认将鼠标移动至输入框中
 var input = document.querySelector('input');
 input.focus();
-var el = document.querySelector('#js-getWeather');
+var el = document.querySelector('#weather-handler');
 // var URL = 'http://api.openweathermap.org/data/2.5/forecast?q=shenzhen&APPID=10b3d2f0dae67a22162adf2273b000d6';
-var URL = 'http://api.openweathermap.org/data/2.5/weather';
+// var URL = 'http://api.openweathermap.org/data/2.5/weather';
 
 var weather_icons_url = 'http://openweathermap.org/img/w/';
 var APPID = '10b3d2f0dae67a22162adf2273b000d6';
 
 
-el.addEventListener('blur', function() {
-
-
+el.addEventListener('click', function() {
 
 	$.getJSON( {
-		url: URL,
-		data: {
-			q: el.value,
-			APPID: APPID
-		}
+		// url: URL,
+		// data: {
+		// 	q: el.value,
+		// 	APPID: APPID
+		// }
 		// url: '../data/shenzhen_forcast.json',
-		// url: '../data/shenzhen_current.json'
+		url: '../data/shenzhen_current.json'
 	})
 	.done(getDataSuccess)
 	.fail(function(){
@@ -35,28 +33,37 @@ function getDataSuccess(data){
 	// 天气简洁信息卡元素获取
 	var xhr = data;
 
-	var input = document.querySelector('#js-getWeather'),
-		get_data = document.querySelector('.now label'),
+	// create a new weather card
+	createWeatherCard();
 
-		city_name = document.querySelector('.city-name'),
-		weather_icon = document.querySelector('.weather-icon'),
-		weather_details_number = document.querySelector('.now-number'),
+	var input = document.querySelectorAll('#js-getWeather'),
+		get_data = document.querySelectorAll('.now label'),
 
-		weather_humidity = document.querySelector('.now-humidity span'),
-		weather_wind_speed = document.querySelector('.now-wind-speed span'),
+		city_name = document.querySelectorAll('.city-name'),
+		weather_icon = document.querySelectorAll('.weather-icon'),
+		weather_details_number = document.querySelectorAll('.now-number'),
 
-		weather_time = document.querySelector('.data-get-time'),
-		weather_description = document.querySelector('.data-description');
+		weather_humidity = document.querySelectorAll('.now-humidity span'),
+		weather_wind_speed = document.querySelectorAll('.now-wind-speed span'),
+
+		weather_time = document.querySelectorAll('.data-get-time'),
+		weather_description = document.querySelectorAll('.data-description');
 
 
-		// console.log(xhr.weather);
-	city_name.innerText = xhr.name;
-	weather_icon.setAttribute('src', weather_icons_url + xhr.weather[0].icon + '.png');	
-	weather_details_number.innerText = Math.round(xhr.main.temp - 273.5); 
-	weather_humidity.innerText = xhr.main.humidity;
-	weather_wind_speed.innerText = xhr.wind.speed;
-	weather_description.innerText = xhr.weather[0].description;
-	weather_time.innerText = dateConventor(xhr.dt);
+
+	// console.log(xhr.weather);
+	for(var i = 0; i < 2; i++) {
+
+		city_name[i].innerText= xhr.name;
+		weather_icon[i].setAttribute('src', weather_icons_url + xhr.weather[0].icon + '.png');	
+		weather_details_number[i].innerText = Math.round(xhr.main.temp - 273.5); 
+		weather_humidity[i].innerText = xhr.main.humidity;
+		weather_wind_speed[i].innerText = xhr.wind.speed;
+		weather_description[i].innerText = xhr.weather[0].description;
+		weather_time[i].innerText = dateConventor(xhr.dt);
+
+	}
+	
 
 }
 
@@ -81,6 +88,13 @@ function dateConventor(UNIX_stamps) {
 		return time = dates.join('-') + ' ' + times.join(':');
 }
 
+function createWeatherCard() {
+	var parentElement = document.querySelector('.test');
+
+	var card = '<h3 class="city-name"></h3><div class="now-details"><div class="flex"><img class="icon weather-icon"><div class="temp_details"><span class="now-number">22</span><span>摄氏度</span></div></div><div class="now-weather"><h3 class="now-humidity">湿度<span></span></h3><h3 class="now-wind-speed">风级<span></span></h3></div></div><div class="now-description"><span class="data-get-time">the time get the data</span><p class="data-description">data description about the weather now</p></div>';
+
+	parentElement.innerHTML = card;
+}
 // 定义一个插入天气块的函数
 // 定义动画
 // D3.js学习
