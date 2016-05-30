@@ -1,6 +1,9 @@
+// 默认将鼠标移动至输入框中
+var input = document.querySelector('input');
+input.focus();
 var el = document.querySelector('#js-getWeather');
-// var URL = "http://api.openweathermap.org/data/2.5/forecast?q=shenzhen&APPID=10b3d2f0dae67a22162adf2273b000d6";
-var URL = "http://api.openweathermap.org/data/2.5/weather";
+// var URL = 'http://api.openweathermap.org/data/2.5/forecast?q=shenzhen&APPID=10b3d2f0dae67a22162adf2273b000d6';
+var URL = 'http://api.openweathermap.org/data/2.5/weather';
 
 var weather_icons_url = 'http://openweathermap.org/img/w/';
 var APPID = '10b3d2f0dae67a22162adf2273b000d6';
@@ -53,11 +56,11 @@ function getDataSuccess(data){
 	weather_humidity.innerText = xhr.main.humidity;
 	weather_wind_speed.innerText = xhr.wind.speed;
 	weather_description.innerText = xhr.weather[0].description;
-	weather_time.innerText = dateConventro(xhr.dt);
+	weather_time.innerText = dateConventor(xhr.dt);
 
 }
 
-function dateConventro(UNIX_stamps) {
+function dateConventor(UNIX_stamps) {
 	var date = new Date(UNIX_stamps * 1000),
 		year, month, day, hour, minute, second, dates,times,time;
 
@@ -78,6 +81,3 @@ function dateConventro(UNIX_stamps) {
 		return time = dates.join('-') + ' ' + times.join(':');
 }
 
-// 默认将鼠标移动至输入框中
-var input = document.querySelector('input');
-input.focus();
