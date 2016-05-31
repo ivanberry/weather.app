@@ -38,7 +38,45 @@ element是插入位置的参考位置。
 
 理所当然,`beforebegin`和`afterend`的插入必须是`element`本身存在于DOM书中,并且有父级元素的存在。
 
-[refrence] ()
+[refrence] (https://developer.mozilla.org/en-US/docs/Web/API/Element/insertAdjacentHTML)
+
+兼容性:
+
+
+
+					Element.insertAdjacentHTML() ✔ 93.94% ◒ 1.37% [W3C Candidate Recommendation]
+					Inserts a string of HTML into a specified position in the DOM relative to the
+					given element. #JSAPI
+
+					IE ‽ 5.5+ ◒ 6+¹ ✔ 10+
+					Edge ✔ 
+					Firefox ✘ 2+ ✔ 8+
+					Chrome ✔ 
+					Safari ✘ 3.1+ ✔ 4+
+					Opera ‽ 9+ ✔ 10.0-10.1+
+
+						¹Throws an "Invalid target element for this operation." error [when called
+						on a table, tbody, thead, or tr
+						element.](http://ejohn.org/blog/dom-insertadjacenthtml/)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ## TODO
