@@ -15,7 +15,7 @@
  
 - [x] 素材收集
 
-## createWeatherCared方法
+## createWeatherCard方法
 
 功能:
 
