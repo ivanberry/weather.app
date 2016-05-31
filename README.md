@@ -40,11 +40,12 @@ element是插入位置的参考位置。
 
 [refrence] (https://developer.mozilla.org/en-US/docs/Web/API/Element/insertAdjacentHTML)
 
-兼容性:
 
 
 
->	## Element.insertAdjacentHTML()
+
+## 兼容性: Element.insertAdjacentHTML()
+
 > ✔ 93.94% ◒ 1.37% **W3C Candidate Recommendation**
 >	Inserts a string of HTML into a specified position in the DOM relative to the
 >	given element. #JSAPI
