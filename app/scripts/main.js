@@ -67,22 +67,22 @@ function getDataSuccess(data){
 }
 
 function dateConventor(UNIX_stamps) {
-	var date = new Date(UNIX_stamps * 1000),
-		year, month, day, hour, minute, second, dates,times,time;
+var date = new Date(UNIX_stamps * 1000),
+	year, month, day, hour, minute, second, dates,times,time;
 
-		year = date.getFullYear();
-		month = date.getMonth() + 1;
-		day = date.getDate();
-		hour = '0' + date.getHours();
-		minute = '0' + date.getMinutes();
-		second = '0' + date.getSeconds();
+	year = date.getFullYear();
+	month = date.getMonth() + 1;
+	day = date.getDate();
+	hour = '0' + date.getHours();
+	minute = '0' + date.getMinutes();
+	second = '0' + date.getSeconds();
 
-		dates = [year, month, day],
-		times = [hour, minute, second];
+	dates = [year, month, day],
+	times = [hour, minute, second];
 
-		for( var i = 0; i < times.length; i++ ) {
-			times[i] = times[i].substr(-2);
-		}
+	for( var i = 0; i < times.length; i++ ) {
+		times[i] = times[i].substr(-2);
+	}
 
 		return time = dates.join('-') + ' ' + times.join(':');
 }
