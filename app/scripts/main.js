@@ -1,6 +1,5 @@
 // 默认将鼠标移动至输入框中
-var input = document.querySelector('input');
-input.focus();
+
 
 var el = document.querySelector('#weather-handler');
 // var URL = 'http://api.openweathermap.org/data/2.5/forecast?q=shenzhen&APPID=10b3d2f0dae67a22162adf2273b000d6';
@@ -32,23 +31,28 @@ el.addEventListener('click', function() {
 
 function getDataSuccess(data){
 	// 天气简洁信息卡元素获取
-	var xhr = data;
+	var input = document.querySelector('input');
+		input.focus();
+
+	var xhr = data,
+		identity = '.now-' + input.value;
 
 	// create a new weather card
-	createWeatherCard();
+	createWeatherCard(input.value);  //将对应的城市名以className传入
 
+	//输入框和对应label
 	var input = document.querySelector('#js-getWeather'),
-		get_data = document.querySelector('.now label'),
+		get_data = document.querySelector('label'),
 
-		city_name = document.querySelector('.city-name'),
-		weather_icon = document.querySelector('.weather-icon'),
-		weather_details_number = document.querySelector('.now-number'),
+		city_name = document.querySelector(identity +' .city-name'),
+		weather_icon = document.querySelector(identity + ' .weather-icon'),
+		weather_details_number = document.querySelector(identity + ' .now-number'),
 
-		weather_humidity = document.querySelector('.now-humidity span'),
-		weather_wind_speed = document.querySelector('.now-wind-speed span'),
+		weather_humidity = document.querySelector(identity + ' .now-humidity span'),
+		weather_wind_speed = document.querySelector(identity + ' .now-wind-speed span'),
 
-		weather_time = document.querySelector('.data-get-time'),
-		weather_description = document.querySelector('.data-description');
+		weather_time = document.querySelector(identity + ' .data-get-time'),
+		weather_description = document.querySelector(identity + ' .data-description');
 
 
 
@@ -87,7 +91,9 @@ var date = new Date(UNIX_stamps * 1000),
 		return time = dates.join('-') + ' ' + times.join(':');
 }
 
-function createWeatherCard() {
+function createWeatherCard(cityname) {
+
+	var city = cityname;
 	// 缓存DOMsection.now元素数组
     var sections = document.querySelectorAll('section.now'),
         position = sections.length;
@@ -98,6 +104,7 @@ function createWeatherCard() {
 	// 插入DOM中
 	sections[position - 1 ].insertAdjacentHTML('afterend', '<section class="now">' + card + '</section>');
 
+	sections[position - 1].classList.add('now-' + city);
 }
 // 定义一个插入天气块的函数
 // 定义动画
