@@ -70,6 +70,7 @@ body {
   /* Remove the bottom border on the jumbotron for visual effect */
   .jumbotron {
     border-bottom: 0; } }
+/* // reset.scss */
 /* 防止用户自定义背景颜色对网页的影响，添加让用户可以自定义字体 *https://www.smashingmagazine.com/2011/12/an-introduction-to-object-oriented-css-oocss//
 html {
   color: #333;
@@ -352,8 +353,11 @@ h1, h2, h3, h4, h5, h6 {
   max-width: 100%; }
 
 header, article, section, h2, h3, span, h4, p, div, figure, main, label, input {
+  /*  @include border(green); */
   margin: 10px 5px; }
 
+/* colors */
+/* weather.app scss */
 * {
   padding: 0;
   margin: 0;
@@ -386,7 +390,9 @@ header {
 
 article {
   padding: 10px 20px;
-  display: flex; }
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap; }
 
 section {
   padding: 10px 20px;

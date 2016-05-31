@@ -8,10 +8,42 @@
 ## First step
 
 [x] 页面设计
+
 [x] 基础HTML结构
+
 [x] 基础样式
+
 [x] 素材收集
+
+## createWeatherCared方法
+
+功能:
+
+- 缓存sction数组
+- 定义插入模板
+- 插入最后一个section后
+
+实现:
+
+主要在于模板插入到DOM书中的实现,实现过程学习了常用的插入方法,最后选定了`insertAdjacentHTML()`来实现,它需要两个参数,第一个是插入的位置,第二个是需要插入的对象,这里插入的对象不能是拼接好的节点,只能是字符串等形式,位置有4种:
+
+> element.insetAdjacentHTML(position, text);
+
+element是插入位置的参考位置。
+
+1. beforebegin: element之前
+2. afterbegin: element内,在它first-child之前
+3. beforeend: element内,在它last-child之后
+4. afterend: element元素本身之后
+
+理所当然,`beforebegin`和`afterend`的插入必须是`element`本身存在于DOM书中,并且有父级元素的存在。
+
+[refrence] ()
+
 
 ## TODO
 [x] 实现html的结构插入
-[ ] 实现预测信息的走势图
+
+[ ] hover特效实现
+
+[ ] 实现预测信息的走势
