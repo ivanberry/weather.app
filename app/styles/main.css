@@ -391,7 +391,7 @@ header {
 article {
   padding: 10px 20px;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   flex-wrap: wrap; }
 
 section {
