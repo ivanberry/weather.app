@@ -1,6 +1,9 @@
 // 默认将鼠标移动至输入框中
+// 天气简洁信息卡元素获取
+var input = document.querySelector('input'),
+	cityname = '';
 
-
+var article = document.querySelector('article');
 var el = document.querySelector('#weather-handler');
 // var URL = 'http://api.openweathermap.org/data/2.5/forecast?q=shenzhen&APPID=10b3d2f0dae67a22162adf2273b000d6';
 var URL = 'http://api.openweathermap.org/data/2.5/weather';
@@ -8,21 +11,32 @@ var URL = 'http://api.openweathermap.org/data/2.5/weather';
 var weather_icons_url = 'http://openweathermap.org/img/w/';
 var APPID = '10b3d2f0dae67a22162adf2273b000d6';
 
+// 缓存DOMsection.now元素数组
+var sections = [],
+    position = sections.length;
 
 el.addEventListener('click', function() {
+	
+	// 全局范围内更新了input.value
+	cityname = input.value;
+	
+	if(!cityname) {
+		console.log('您想查询哪个城市呢?');
+		return false;
+	}
 
 	$.getJSON( {
-		// url: URL,
-		// data: {
-		// 	q: input.value,
-		// 	APPID: APPID
-		// }
+		url: URL,
+		data: {
+			q: input.value,
+			APPID: APPID
+		}
 		// url: '../data/shenzhen_forcast.json',
-		url: '../data/shenzhen_current.json'
+		// url: '../data/shenzhen_current.json'
 	})
 	.done(getDataSuccess)
 	.fail(function(){
-		console.log( 'errors happeded! !!!');
+		console.log( 'errors happeded!');
 	})
 	.always(console.log('get the XHR object'));
 
@@ -30,15 +44,14 @@ el.addEventListener('click', function() {
 
 
 function getDataSuccess(data){
-	// 天气简洁信息卡元素获取
-	var input = document.querySelector('input');
-		input.focus();
+	console.log(cityname);
 
 	var xhr = data,
-		identity = '.now-' + input.value;
+		identity = '.now-' + cityname;
+	
 
 	// create a new weather card
-	createWeatherCard(input.value);  //将对应的城市名以className传入
+	createWeatherCard(cityname);  //将对应的城市名以className传入
 
 	//输入框和对应label
 	var input = document.querySelector('#js-getWeather'),
@@ -91,20 +104,32 @@ var date = new Date(UNIX_stamps * 1000),
 		return time = dates.join('-') + ' ' + times.join(':');
 }
 
-function createWeatherCard(cityname) {
+function createWeatherCard(name) {
 
-	var city = cityname;
-	// 缓存DOMsection.now元素数组
-    var sections = document.querySelectorAll('section.now'),
-        position = sections.length;
+	var city = name;
 
 	var card = '<h3 class="city-name"></h3><div class="now-details"><div class="flex"><img class="icon weather-icon"><div class="temp_details"><span class="now-number">22</span><span>℃</span></div></div><div class="now-weather"><h3 class="now-humidity">湿度<span></span></h3><h3 class="now-wind-speed">风级<span></span></h3></div></div><div class="now-description"><span class="data-get-time">the time get the data</span><p class="data-description">data description about the weather now</p></div>';
 
 
-	// 插入DOM中
-	sections[position - 1 ].insertAdjacentHTML('afterend', '<section class="now">' + card + '</section>');
+	
 
-	sections[position - 1].classList.add('now-' + city);
+	
+	if(!position) {
+
+		article.insertAdjacentHTML('afterbegin', '<section class="now " >' + card + '</section>');
+
+		sections = document.querySelectorAll('section.now');
+		sections[0].classList.add('now-' + city);
+
+		position++;
+	}else {
+		sections[position - 1 ].insertAdjacentHTML('afterend', '<section class="now">' + card + '</section>');
+		sections = document.querySelectorAll('section.now');
+		sections[position].classList.add('now-' + city);
+	}
+	
+	
+
 }
 // 定义一个插入天气块的函数
 // 定义动画
