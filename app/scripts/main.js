@@ -29,7 +29,8 @@ el.addEventListener('click', function() {
 		url: URL,
 		data: {
 			q: input.value,
-			APPID: APPID
+			APPID: APPID,
+			lang: 'zh_cn'
 		}
 		// url: '../data/shenzhen_forcast.json',
 		// url: '../data/shenzhen_current.json'
@@ -67,10 +68,7 @@ function getDataSuccess(data){
 		weather_time = document.querySelector(identity + ' .data-get-time'),
 		weather_description = document.querySelector(identity + ' .data-description');
 
-
-
-	// console.log(xhr.weather);
-
+	// 数据组装
 		city_name.innerText= xhr.name;
 		weather_icon.setAttribute('src', weather_icons_url + xhr.weather[0].icon + '.png');
 		weather_details_number.innerText = Math.round(xhr.main.temp - 273.5);
