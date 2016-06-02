@@ -75,7 +75,7 @@ element是插入位置的参考位置。
 
 - [ ] hover特效实现
 
-- [ ] 城市列表过滤[张鑫旭](http://www.zhangxinxu.com/wordpress/?p=3672)
+- [ ] 城市列表并增加过滤[张鑫旭](http://www.zhangxinxu.com/wordpress/?p=3672)
 
 - [ ] 动画定义
 
