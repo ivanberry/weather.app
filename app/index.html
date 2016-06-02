@@ -1,55 +1,56 @@
 <!doctype html>
-<html class="no-js" lang="">
-  <head>
-    <meta charset="utf-8">
-    <meta name="description" content="天气预报">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>天气预报</title>
+<html lang="zh_cn">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="天气预报">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>天气预报</title>
 
-    <link rel="apple-touch-icon" href="apple-touch-icon.png">
-    <link rel="stylesheet" href="styles/main.css">
-  </head>
-  <body>
-        <!-- 确定页面的基本结构 -->
-    <header>
-      <h2>不同的天气，不同的心情</h2>
-    </header>
-    <main>
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/balloon-css/0.2.4/balloon.min.css">
+<link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <!-- 确定页面的基本结构 -->
+<header>
+  <h2>不同的天气，不同的心情</h2>
+</header>
+<main>
 
-    <!-- 查询 -->
-    <input name="weaher-now" type="text" id="js-getWeather">
-    <label name="weather-now" for="js-getWeather" id="weather-handler">查询</label> 
+<!-- 查询 -->
+<input data-balloon-length="medium" data-balloon="请输入想查询的城市..." data-balloon-pos="up" name="weaher-now" type="text" id="js-getWeather">
+<label data-balloon-length="medium" data-balloon="请输入想查询的城市..." data-balloon-pos="up" name="weather-now" for="js-getWeather" id="weather-handler">查询</label>
 
-    <article>
-      <section class="forcase" style="display: none">
-        <!-- 天气预报预测数据展示图 -->
-        <div class="forcase-details">
-        <figure class="forcase-fivedays">
-          <caption>5天天气预报</caption>
+<article>
+  <section class="forcase" style="display: none">
+    <!-- 天气预报预测数据展示图 -->
+    <div class="forcase-details">
+    <figure class="forcase-fivedays">
+      <caption>5天天气预报</caption>
 
-          <div class="forcase-fivedays__temprature">
-          <h3>温度趋势</h3>
-           <!-- 引入D3.js  -->
-          </div>
+      <div class="forcase-fivedays__temprature">
+      <h3>温度趋势</h3>
+       <!-- 引入D3.js  -->
+      </div>
 
-          <div class="forcase-fivedays__winds">
-          <h3>风级趋势</h3>
-            <!-- 引入D3.js -->
-          </div>
+      <div class="forcase-fivedays__winds">
+      <h3>风级趋势</h3>
+        <!-- 引入D3.js -->
+      </div>
 
-          <div class="forcase-fivedays__sun">
-          <h3>日照趋势</h3>
-            <!-- 引入D3.js -->
-          </div>
-        </figure>
-        </div>
-      </section>
-    </article>
-  </main>
-  <footer>
-    <h4>Powered by OpenWeather API and D3.js </h4>
-  </footer>
-  <script src="scripts/jquery.min.js"></script>
-  <script src="scripts/main.js"></script>
+      <div class="forcase-fivedays__sun">
+      <h3>日照趋势</h3>
+        <!-- 引入D3.js -->
+      </div>
+    </figure>
+    </div>
+  </section>
+</article>
+</main>
+<footer>
+<h4>Powered by OpenWeather API and D3.js </h4>
+</footer>
+<script src="scripts/jquery.min.js"></script>
+<script src="scripts/main.js"></script>
 </body>
 </html>

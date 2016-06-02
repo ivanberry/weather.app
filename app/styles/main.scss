@@ -156,9 +156,8 @@ header {
 }
 
 article {
-  padding: 10px 20px;
-
-  display: flex;
+    padding: 10px 20px;
+    display: flex;
 	justify-content: flex-start;
 	flex-wrap: wrap;
 }
@@ -193,3 +192,4 @@ section {
 .forcase {
   flex: 1;
 }
+

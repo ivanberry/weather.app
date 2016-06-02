@@ -73,10 +73,12 @@ element是插入位置的参考位置。
 
 - [x] 实现html的结构插入
 
+- [ ] hover特效实现
+
+- [ ] 城市列表过滤[张鑫旭](http://www.zhangxinxu.com/wordpress/?p=3672)
+
 - [ ] 动画定义
 
-- [ ] hover特效实现
- 
 - [ ] D3.js引入
 
 - [ ] 考虑数据是否重新组装
