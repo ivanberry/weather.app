@@ -388,6 +388,9 @@ header {
   header h2 {
     color: #fff; }
 
+input[name="weather-now"] {
+  width: 20em; }
+
 article {
   padding: 10px 20px;
   display: flex;
