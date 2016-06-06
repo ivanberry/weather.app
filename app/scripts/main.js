@@ -68,7 +68,7 @@ function getDataSuccess(data){
 		weather_time = document.querySelector(identity + ' .data-get-time'),
 		weather_description = document.querySelector(identity + ' .data-description');
 
-	// 数据组装
+	// 数据填充
 		city_name.innerText= xhr.name;
 		weather_icon.setAttribute('src', weather_icons_url + xhr.weather[0].icon + '.png');
 		weather_details_number.innerText = Math.round(xhr.main.temp - 273.5);
@@ -161,3 +161,18 @@ d3.select('.chart')
   .text(function(d) {return d; });
 //重组数据为二元
 
+function dataReDesign(data) {
+
+	var chart_date = [];
+	var chart_meta_data = {};
+
+	for(let i = 0; i < data.list.length; i++) {
+		var index = data.list[0].lastIndexOf(' ');
+		chart_meta_data.dt = data.list[i].dt_txt.slice(index);
+		chart_meta_data.temp = data.list[i].main.temp;
+
+		temp_data = chart_meta_data;
+		chart_data.push(temp_data);
+	}
+	return chart_data;
+}
