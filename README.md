@@ -99,4 +99,28 @@ element是插入位置的参考位置。
 
 - 插入一个天气块,再次插入未更新DOM树
 
+## d3笔记
+
+### d3.scale.linear
+
+定义坐标轴的梯度,通过`domain`和`range`实现定义,其中`range`限定可利用的范围,而`domain`定义最值。
+
+### d3.svg.axis
+
+定义坐标轴,就是画出坐标轴那条线,`d3.scale.linear`主要是坐标轴的属性定义
+
+
+### d3's XHR
+
+-  d3.xhr(url[, mimeType][, callback])
+- d3.json(url[, callback])
+
+Creates a request for the JSON file at the specified url with the mime type "application/json". If a callback is specified, the request is immediately issued with the GET method, and the callback will be invoked asynchronously when the file is loaded or the request fails; the callback is invoked with two arguments: the error, if any, and the parsed JSON. The parsed JSON is undefined if an error occurs. If no callback is specified, the returned request can be issued using xhr.get or similar, and handled using xhr.on.
+
+[教程地址](http://code.tutsplus.com/tutorials/building-a-multi-line-chart-using-d3js-part-2--cms-22973)
+
+
+[d3-core API](https://github.com/d3/d3/wiki/Core)
+
+
 

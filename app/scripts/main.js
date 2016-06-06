@@ -159,6 +159,5 @@ d3.select('.chart')
   .enter().append('div')
   .style('width', function(d){ return x(d) + 'px'})
   .text(function(d) {return d; });
-// 考虑要不要重组数据结构
-
+//重组数据为二元
 
