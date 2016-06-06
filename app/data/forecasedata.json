@@ -1,0 +1,27 @@
+"dt": 1464015600,
+"main": {
+"temp": 289.5,
+"temp_min": 289.052,
+"temp_max": 289.5,
+"pressure": 1006.08,
+"sea_level": 1025.49,
+"grnd_level": 1006.08,
+"humidity": 83,
+"temp_kf": 0.45
+},
+"weather": [
+{
+"id": 500,
+"main": "Rain",
+"description": "light rain",
+"icon": "10d"
+}
+],
+"clouds": {
+"all": 32
+},
+"wind": {
+"speed": 1.77,
+"deg": 46.5015
+},
+"dt_txt": "2016-05-23 15:00:00"

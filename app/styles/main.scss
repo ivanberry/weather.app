@@ -193,7 +193,29 @@ section {
 
 }
 
-.forcase {
-  flex: 1;
+//测试请求按钮
+.forcase-test-button {
+	width: 60px;
+	padding: 5px 15px;
+	border-radius: 5px;
+
+	background-color: #FF5722;
+	color: #fff;
+
+}
+//预报数据展示区域
+.forcase-container {
+	background-color: #00BCD4;
+	color: #000;
+
+}
+
+
+//d3.js test
+.chart div {
+	@include border(lightgreen);
+	padding-top: 2px;
+
+	text-align: right;
 }
 

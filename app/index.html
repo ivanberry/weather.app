@@ -18,39 +18,47 @@
 <main>
 
 <!-- 查询 -->
-<input data-balloon-length="medium" data-balloon="请输入想查询的城市..." data-balloon-pos="up" name="weaher-now" type="text" id="js-getWeather" placeholder="请输入想查询的城市...(shenzhen/深圳)">
-<label data-balloon-length="medium" data-balloon="请输入想查询的城市" data-balloon-pos="up" name="weather-now" for="js-getWeather" id="weather-handler">查询</label>
+	<form action="">
+	<input data-balloon-length="medium" data-balloon="请输入想查询的城市..." data-balloon-pos="up" name="weaher-now" type="text" id="js-getWeather" placeholder="请输入想查询的城市...(shenzhen/深圳)">
+	<label data-balloon-length="medium" data-balloon="请输入想查询的城市" data-balloon-pos="up" name="weather-now" for="js-getWeather" id="weather-handler">查询</label>
 
-<article>
-  <section class="forcase" style="display: none">
-    <!-- 天气预报预测数据展示图 -->
-    <div class="forcase-details">
-    <figure class="forcase-fivedays">
-      <caption>5天天气预报</caption>
+	</form>
 
-      <div class="forcase-fivedays__temprature">
-      <h3>温度趋势</h3>
-       <!-- 引入D3.js  -->
-      </div>
+<article class="now-container">
+	<!--<button class="forcase-test-button">详情</button>-->
+</article>
+<article class="forcase-container">
+<section class="forcase" style="display: none">
+<!-- 天气预报预测数据展示图 -->
+	<div class="forcase-details">
+		<figure class="forcase-fivedays">
+		  <caption>5天天气预报</caption>
 
-      <div class="forcase-fivedays__winds">
-      <h3>风级趋势</h3>
-        <!-- 引入D3.js -->
-      </div>
+          <div class="forcase-fivedays__temprature">
+            <h3>温度趋势</h3>
+            <!-- 引入D3.js  -->
+          </div>
 
-      <div class="forcase-fivedays__sun">
-      <h3>日照趋势</h3>
-        <!-- 引入D3.js -->
-      </div>
-    </figure>
-    </div>
-  </section>
+          <div class="forcase-fivedays__winds">
+            <h3>风级趋势</h3>
+            <!-- 引入D3.js -->
+          </div>
+
+          <div class="forcase-fivedays__sun">
+            <h3>日照趋势</h3>
+            <!-- 引入D3.js -->
+          </div>
+		</figure>
+	</div>
+</section>
 </article>
 </main>
+    <div class="chart"></div>
 <footer>
 <h4>Powered by OpenWeather API and D3.js </h4>
 </footer>
 <script src="scripts/jquery.min.js"></script>
+<script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 <script src="scripts/main.js"></script>
 </body>
 </html>

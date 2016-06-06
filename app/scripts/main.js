@@ -3,9 +3,9 @@
 var input = document.querySelector('input'),
 	cityname = '';
 
-var article = document.querySelector('article');
+var article = document.querySelector('.now-container');
 var el = document.querySelector('#weather-handler');
-// var URL = 'http://api.openweathermap.org/data/2.5/forecast?q=shenzhen&APPID=10b3d2f0dae67a22162adf2273b000d6';
+// var URL = 'http://api.openweathermap.org/data/2.5/forecast';
 var URL = 'http://api.openweathermap.org/data/2.5/weather';
 
 var weather_icons_url = 'http://openweathermap.org/img/w/';
@@ -107,6 +107,9 @@ function createWeatherCard(name) {
 	var city = name;
 
 	var card = '<h3 class="city-name"></h3><div class="now-details"><div class="flex"><img class="icon weather-icon"><div class="temp_details"><span class="now-number">22</span><span>℃</span></div></div><div class="now-weather"><h3 class="now-humidity">湿度<span></span></h3><h3 class="now-wind-speed">风级<span></span></h3></div></div><div class="now-description"><span class="data-get-time">the time get the data</span><p class="data-description">data description about the weather now</p></div>';
+	
+	
+	var button = '<button class=forcase-test-button>详情</button>';
 
 
 	
@@ -114,14 +117,14 @@ function createWeatherCard(name) {
 	
 	if(!position) {
 
-		article.insertAdjacentHTML('afterbegin', '<section class="now " >' + card + '</section>');
+		article.insertAdjacentHTML('afterbegin', '<section class="now " >' + card + button + '</section>');
 
 		sections = document.querySelectorAll('section.now');
 		sections[0].classList.add('now-' + city);
 
 		position++;
 	}else {
-		sections[position - 1 ].insertAdjacentHTML('afterend', '<section class="now">' + card + '</section>');
+		sections[position - 1 ].insertAdjacentHTML('afterend', '<section class="now">' + card + button + '</section>');
 		sections = document.querySelectorAll('section.now');
 		sections[position].classList.add('now-' + city);
 	}
@@ -129,8 +132,33 @@ function createWeatherCard(name) {
 	
 
 }
-// 定义一个插入天气块的函数
 // 定义动画
-// D3.js学习
+// D3.js引入
+// //get the container
+var chartData = [4, 8, 12, 23, 44, 100];
+// var chart = d3.select(".chart");
+// //initiate the data by defining the selection to which we will join the data
+// var bar = chart.selectAll("div");
+// //data join
+// var barUpdate = bar.data(chartData);
+// //append the div
+// var barEnter = barUpdate.enter().append("div");
+// //set the width of each new bar as associated data value:d
+// barEnter.style("width", function(d){return d * 10 + "px"});
+// //set text content and lable
+// barEnter.text(function(d) {return d;});
+
+//chainning
+var x = d3.scale.linear()
+  .domain([0, d3.max(chartData)])
+  .range([0, 420]);
+
+d3.select('.chart')
+  .selectAll('div')
+  .data(chartData)
+  .enter().append('div')
+  .style('width', function(d){ return x(d) + 'px'})
+  .text(function(d) {return d; });
 // 考虑要不要重组数据结构
+
 
