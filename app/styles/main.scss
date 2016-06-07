@@ -219,3 +219,13 @@ section {
 	margin: 0 auto;
 }
 
+.axis path {
+	fill: none;
+	storke: #777;
+	shape-rendering: crispEdges;
+}
+.axis text {
+	font-family: Lato;
+	font-size: 13px;
+}
+

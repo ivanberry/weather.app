@@ -202,8 +202,8 @@ var chart = d3.select('#chart'),
  定义x,y轴线
 */
 
-x_scale = d3.scale.linear().range([MARGINS.left, WIDTH - MARGINS.right]).domain([0, 24]);
-y_scale = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom]).domain([10, 40]);
+x_scale = d3.scale.linear().range([MARGINS.left, WIDTH - MARGINS.right]).domain([2000, 2010]);
+y_scale = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom]).domain([134, 215]);
 
 // d3.svg.axis()画图开始
 
@@ -218,11 +218,31 @@ y_axis = d3.svg.axis()
 
 chart.append('svg:g')
   .attr('transform', 'translate(0,' + (HEIGHT - MARGINS.bottom) + ')')
+  .attr('class', 'axix')
   .call(x_axis);
 
 chart.append('svg:g')
   .attr('transform', 'translate(' + (MARGINS.left) + ',0)')
+  .attr('class', 'axix')
   .call(y_axis);
+
+//apply the data with axis and draw lines: d3.svg.line
+//定义了话数据曲线的方法
+var lineGenerator = d3.svg.line()
+  .x(function(d) {
+	  return x_scale(d.year);
+  })
+  .y(function(d) {
+	  return y_scale(d.sale);
+  })
+  .interpolate('basis');
+
+//append line path to svg and map the sample data to the plotting space using lineGen function
+chart.append('svg:path')
+  .attr('d', lineGenerator(data))
+  .attr('stroke', 'red')
+  .attr('stroke-width', 2)
+  .attr('fill', 'none');
 
 
 
