@@ -112,7 +112,8 @@ element是插入位置的参考位置。
 
 ### d3's XHR
 
--  d3.xhr(url[, mimeType][, callback])
+- d3.xhr(url[, mimeType][, callback])
+
 - d3.json(url[, callback])
 
 Creates a request for the JSON file at the specified url with the mime type "application/json". If a callback is specified, the request is immediately issued with the GET method, and the callback will be invoked asynchronously when the file is loaded or the request fails; the callback is invoked with two arguments: the error, if any, and the parsed JSON. The parsed JSON is undefined if an error occurs. If no callback is specified, the returned request can be issued using xhr.get or similar, and handled using xhr.on.

@@ -1,3 +1,4 @@
+'use strict';
 // 默认将鼠标移动至输入框中
 // 天气简洁信息卡元素获取
 var input = document.querySelector('input'),
@@ -134,41 +135,20 @@ function createWeatherCard(name) {
 }
 // 定义动画
 // D3.js引入
-// //get the container
-var chartData = [4, 8, 12, 23, 44, 100];
-// var chart = d3.select(".chart");
-// //initiate the data by defining the selection to which we will join the data
-// var bar = chart.selectAll("div");
-// //data join
-// var barUpdate = bar.data(chartData);
-// //append the div
-// var barEnter = barUpdate.enter().append("div");
-// //set the width of each new bar as associated data value:d
-// barEnter.style("width", function(d){return d * 10 + "px"});
-// //set text content and lable
-// barEnter.text(function(d) {return d;});
 
-//chainning
-var x = d3.scale.linear()
-  .domain([0, d3.max(chartData)])
-  .range([0, 420]);
-
-d3.select('.chart')
-  .selectAll('div')
-  .data(chartData)
-  .enter().append('div')
-  .style('width', function(d){ return x(d) + 'px'})
-  .text(function(d) {return d; });
-//重组数据为二元
+//重组数据为三元
 
 function dataReDesign(data) {
 
-	var chart_date = [];
-	var chart_meta_data = {};
+	var chart_data = [],
+		chart_meta_data = {},
+	    temp_data,
+		index = data.list[0].dt_txt.lastIndexOf(' ');
 
 	for(let i = 0; i < data.list.length; i++) {
-		var index = data.list[0].lastIndexOf(' ');
-		chart_meta_data.dt = data.list[i].dt_txt.slice(index);
+
+		chart_meta_data.icon = data.list[i].weather[0].icon;
+		chart_meta_data.dt = data.list[i].dt_txt.slice(index + 1);
 		chart_meta_data.temp = data.list[i].main.temp;
 
 		temp_data = chart_meta_data;
@@ -176,3 +156,75 @@ function dataReDesign(data) {
 	}
 	return chart_data;
 }
+
+d3.json('../data/data.json', function(error, json) {
+	if(error) return console.warn(error); 
+	dataReDesign(json);
+});
+
+
+
+//mock data
+var data = [{
+	"sale": "202",
+	"year": "2000"
+}, {
+	"sale": "215",
+	"year": "2001"
+}, {
+	"sale": "179",
+	"year": "2002"
+}, {
+	"sale": "199",
+	"year": "2003"
+}, {
+	"sale": "134",
+	"year": "2003"
+}, {
+	"sale": "176",
+	"year": "2010"
+}];
+//获取chart位置,定义一些基础数据
+var chart = d3.select('#chart'),
+    WIDTH = 1000,
+    HEIGHT = 500,
+    MARGINS = {
+	    top: 20,
+	    right: 20,
+	    bottom: 20,
+	    left: 50
+    },
+    x_scale, y_scale, x_axis, y_axis;
+
+/*
+ d3.scale.linear(range, domain) 建立图表范围
+ range定义图表的画布范围,domain定义轴的步进,Array
+ 定义x,y轴线
+*/
+
+x_scale = d3.scale.linear().range([MARGINS.left, WIDTH - MARGINS.right]).domain([0, 24]);
+y_scale = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom]).domain([10, 40]);
+
+// d3.svg.axis()画图开始
+
+x_axis = d3.svg.axis()
+  .scale(x_scale);
+
+y_axis = d3.svg.axis()
+  .scale(y_scale)
+  .orient('left');
+
+// append to svg conrainer
+
+chart.append('svg:g')
+  .attr('transform', 'translate(0,' + (HEIGHT - MARGINS.bottom) + ')')
+  .call(x_axis);
+
+chart.append('svg:g')
+  .attr('transform', 'translate(' + (MARGINS.left) + ',0)')
+  .call(y_axis);
+
+
+
+
+

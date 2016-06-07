@@ -214,10 +214,8 @@ section {
 
 
 //d3.js test
-.chart div {
-	@include border(lightgreen);
-	padding-top: 2px;
-
-	text-align: right;
+.chart-container {
+	@include border(lightblue);
+	margin: 0 auto;
 }
 
