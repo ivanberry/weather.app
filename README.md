@@ -123,5 +123,31 @@ Creates a request for the JSON file at the specified url with the mime type "app
 
 [d3-core API](https://github.com/d3/d3/wiki/Core)
 
+### 问题
 
+1 值的复制
+
+简单数据类型的复制是值的复制，而复杂数据类型的复制是索引的复制
+
+```js
+var a = {
+	name: "ivanberry"
+};
+
+b = a;
+
+b.name === "ivanberry"; //true
+
+b.name = "who";
+
+a.name === "ivanberry"; //false
+```
+
+把`a`赋值给`b`并不是对值的复制，而是新建了一个链接到`a`的索引而已，它们指向同一个对象。修改其中任意一个值，都会影响另外一个！
+
+2 [Object.assign()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign)
+
+3 JSON.parse(JSON.stringify(jsondata));
+
+4 [Object.create()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/create)
 

@@ -138,10 +138,11 @@ function createWeatherCard(name) {
 
 //重组数据为三元
 
+var chart_data = [];
+
 function dataReDesign(data) {
 
-	var chart_data = [],
-		chart_meta_data = {},
+	var	chart_meta_data = {},
 	    temp_data,
 		index = data.list[0].dt_txt.lastIndexOf(' ');
 
@@ -151,8 +152,10 @@ function dataReDesign(data) {
 		chart_meta_data.dt = data.list[i].dt_txt.slice(index + 1);
 		chart_meta_data.temp = data.list[i].main.temp;
 
-		temp_data = chart_meta_data;
-		chart_data.push(temp_data);
+		// temp_data = chart_meta_data;
+		// chart_data.push(chart_meta_data);
+		// chart_data[i] = JSON.parse(JSON.stringify(chart_meta_data));
+		chart_data.push(Object.assign({}, chart_meta_data ));
 	}
 	return chart_data;
 }

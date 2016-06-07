@@ -4,7 +4,6 @@ const gulpLoadPlugins = require('gulp-load-plugins');
 const browserSync = require('browser-sync');
 const del = require('del');
 const wiredep = require('wiredep').stream;
-const webpack = require('webpack-stream');
 
 const $ = gulpLoadPlugins();
 const reload = browserSync.reload;
@@ -25,12 +24,11 @@ gulp.task('styles', () => {
 });
 
 gulp.task('scripts', () => {
-  return gulp.src('app/scripts/module.js')
+  return gulp.src('app/scripts/main.js')
     .pipe($.plumber())
     .pipe($.sourcemaps.init())
     .pipe($.babel())
     .pipe($.sourcemaps.write('.'))
-    .pipe(webpack())
     .pipe(gulp.dest('.tmp/scripts'))
     .pipe(reload({stream: true}));
 });

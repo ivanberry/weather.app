@@ -193,7 +193,7 @@ section {
 
 }
 
-//测试请求按钮
+/* //测试请求按钮 */
 .forcase-test-button {
 	width: 60px;
 	padding: 5px 15px;
@@ -205,7 +205,7 @@ section {
 	border: none;
 
 }
-//预报数据展示区域
+/* //预报数据展示区域 */
 .forcase-container {
 	background-color: #00BCD4;
 	color: #000;
@@ -213,7 +213,7 @@ section {
 }
 
 
-//d3.js test
+/* //d3.js test */
 .chart-container {
 	@include border(lightblue);
 	margin: 0 auto;
