@@ -1,228 +1,212 @@
-$icon-font-path: '../fonts/';
-$Body_font_size: 14px;
-$Line_height: 1.42858;
+$icon-font-path:'../fonts/';
+$Body_font_size:14px;
+$Line_height:1.42858;
 
 // bower:scss
 // endbower
 
-.browserupgrade {
-  margin: 0.2em 0;
-  background: #ccc;
-  color: #000;
-  padding: 0.2em 0;
+.browserupgrade{
+	margin:0.2em 0;
+	background:#ccc;
+	color:#000;
+	padding:0.2em 0;
 }
-
 /* Space out content a bit */
-body {
-  padding-top: 20px;
-  padding-bottom: 20px;
-  font-size: 14px;
-  line-height: 1.42858;
+body{
+	padding-top:20px;
+	padding-bottom:20px;
+	font-size:14px;
+	line-height:1.42858;
 }
-
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
 .marketing,
-.footer {
-  padding-left: 15px;
-  padding-right: 15px;
+.footer{
+	padding-left:15px;
+	padding-right:15px;
 }
-
 /* Custom page header */
-.header {
-  border-bottom: 1px solid #e5e5e5;
+.header{
+	border-bottom:1px solid #e5e5e5;
 
-  /* Make the masthead heading the same height as the navigation */
-  h3 {
-    margin-top: 0;
-    margin-bottom: 0;
-    padding-bottom: 19px;
-  }
+	/* Make the masthead heading the same height as the navigation */
+	h3{
+		margin-top:0;
+		margin-bottom:0;
+		padding-bottom:19px;
+	}
 }
-
 /* Custom page footer */
-.footer {
-  padding-top: 19px;
-  color: #777;
-  border-top: 1px solid #e5e5e5;
+.footer{
+	padding-top:19px;
+	color:#777;
+	border-top:1px solid #e5e5e5;
 }
-
-.container-narrow > hr {
-  margin: 30px 0;
+.container-narrow > hr{
+	margin:30px 0;
 }
-
 /* Main marketing message and sign up button */
-.jumbotron {
-  text-align: center;
-  border-bottom: 1px solid #e5e5e5;
-  .btn {
-    font-size: 21px;
-    padding: 14px 24px;
-  }
+.jumbotron{
+	text-align:center;
+	border-bottom:1px solid #e5e5e5;
+	.btn{
+		font-size:21px;
+		padding:14px 24px;
+	}
 }
-
 /* Supporting marketing content */
-.marketing {
-  margin: 40px 0;
-  p + h4 {
-    margin-top: 28px;
-  }
+.marketing{
+	margin:40px 0;
+	p + h4{
+		margin-top:28px;
+	}
 }
-
 /* Responsive: Portrait tablets and up */
-@media screen and (min-width: 768px) {
-  .container {
-    max-width: 730px;
-  }
+@media screen and (min-width:768px) {
+	.container{
+		max-width:730px;
+	}
 
-  /* Remove the padding we set earlier */
-  .header,
-  .marketing,
-  .footer {
-    padding-left: 0;
-    padding-right: 0;
-  }
+	/* Remove the padding we set earlier */
+	.header,
+	.marketing,
+	.footer{
+		padding-left:0;
+		padding-right:0;
+	}
 
-  /* Space out the masthead */
-  .header {
-    margin-bottom: 30px;
-  }
+	/* Space out the masthead */
+	.header{
+		margin-bottom:30px;
+	}
 
-  /* Remove the bottom border on the jumbotron for visual effect */
-  .jumbotron {
-    border-bottom: 0;
-  }
+	/* Remove the bottom border on the jumbotron for visual effect */
+	.jumbotron{
+		border-bottom:0;
+	}
 }
-
 /* // reset.scss */
 @import 'typo';
 
 //design borders mixins
 @mixin border($color) {
-	border: 1px solid $color;
+	border:1px solid $color;
 }
-header, article, section, h2, h3, span, h4, p, div, figure, main, label, input {
+header, article, section, h2, h3, span, h4, p, div, figure, main, label, input{
 	/*  @include border(green); */
-	margin: 10px 5px;
+	margin:10px 5px;
 }
-
-
 /* colors */
-$Primary_color: #2196F3;
-$Card_color: #bbdefb;
+$Primary_color:#2196f3;
+$Card_color:#bbdefb;
 
-$Text_primary_color: #fff;
-$Text_card_color: #000;
+$Text_primary_color:#fff;
+$Text_card_color:#000;
 
+/* weather.app scss */
 
-
- /* weather.app scss */
-
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
+*{
+	padding:0;
+	margin:0;
+	box-sizing:border-box;
 }
-body {
-  font-size: $Body_font_size;
-  line-height: $Line_height;
+body{
+	font-size:$Body_font_size;
+	line-height:$Line_height;
 }
-
-.icon { 
-    display: inline-block; 
-    width:20px; height:20px; 
-    // background: ...; 
-    white-space:nowrap; 
-    letter-spacing: -1em; 
-    text-indent: -99em; 
-    color: transparent;
-    /* IE7 */
-    *text-indent: 0;
+.icon{
+	display:inline-block;
+	width:20px; height:20px;
+	// background: ...;
+	white-space:nowrap;
+	letter-spacing:-1em;
+	text-indent:-99em;
+	color:transparent;
+	/* IE7 */
+	*text-indent:0;
 }
-.icon:before {
-    content: '\3000'; 
+.icon:before{
+	content:'\3000';
 }
-
-header {
-	background-color: $Primary_color;
-	padding: 20px 10px;
+header{
+	background-color:$Primary_color;
+	padding:20px 10px;
 
 	//h2 header
-	h2 {
-		color: $Text_primary_color;
+	h2{
+		color:$Text_primary_color;
 	}
 
 }
-
-input {
-	width: 20em;
+input{
+	width:20em;
 }
-
-article {
-    padding: 10px 20px;
-    display: flex;
-	justify-content: flex-start;
-	flex-wrap: wrap;
+article{
+	padding:10px 20px;
+	display:flex;
+	justify-content:flex-start;
+	flex-wrap:wrap;
 }
-
-section {
-
-	padding: 10px 20px;
-	margin-left: 10px;
+section{
+	padding:10px 20px;
+	margin-left:10px;
 }
-.now {
-	background-color: $Card_color;
-	color: $Text_card_color;
+.now{
+	background-color:$Card_color;
+	color:$Text_card_color;
 
-  .weather-icon {
-    float: left;
-    width: 50px;
-    height: auto;
-  }
+	.weather-icon{
+		float:left;
+		width:50px;
+		height:auto;
+	}
 
-  .flex {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .temp_details {
-    flex: 1;
-    text-align: right;
-  }
+	.flex{
+		display:flex;
+		justify-content:space-between;
+		align-items:center;
+	}
+	.temp_details{
+		flex:1;
+		text-align:right;
+	}
 
 }
-
 /* //测试请求按钮 */
-.forcase-test-button {
-	width: 60px;
-	padding: 5px 15px;
-	border-radius: 5px;
-
-	background-color: #FF5722;
-	color: #fff;
-
-	border: none;
-
+.forcase-test-button{
+	width:60px;
+	padding:5px 15px;
+	border-radius:5px;
+	background-color:#ff5722;
+	color:#fff;
+	border:none;
 }
 /* //预报数据展示区域 */
-.forcase-container {
-	background-color: #00BCD4;
-	color: #000;
-
+.forcase-container{
+	background-color:#00bcd4;
+	color:#000;
 }
-
-
 /* //d3.js test */
-.chart-container {
+.chart-container{
 	@include border(lightblue);
-	margin: 0 auto;
+	margin:0 auto;
+	text-align: center;
 }
+//.axis, .axis g{
+//	fill:none;
+//	stroke:#777;
+//	shape-rendering:crispEdges;
+//	font-family:Lato;
+//	font-size:13px;
+//}
 
-.axis, .axis g {
+.axis path {
 	fill: none;
 	stroke: #777;
 	shape-rendering: crispEdges;
+}
+
+.axis text {
 	font-family: Lato;
 	font-size: 13px;
 }
-
