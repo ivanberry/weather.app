@@ -155,7 +155,9 @@ function dataReDesign(data) {
 		// temp_data = chart_meta_data;
 		// chart_data.push(chart_meta_data);
 		// chart_data[i] = JSON.parse(JSON.stringify(chart_meta_data));
-		chart_data.push(Object.assign({}, chart_meta_data ));
+		// chart_data.push(Object.assign({}, chart_meta_data ));
+		var ture_null = Object.create( null );
+		chart_data.push( ture_null, chart_meta_data);
 	}
 	return chart_data;
 }
