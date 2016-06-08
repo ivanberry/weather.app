@@ -138,31 +138,35 @@ function createWeatherCard(name) {
 
 //重组数据为三元
 
-var chart_data = [];
+var chart_data = [],
+    chart_min_data = [],
+    chart_max_data=[];
+
+//定义一个用来传入纯粹数据的空对象
+var true_null = Object.create( null );
 
 function dataReDesign(data) {
 
-	var	chart_meta_data = {},
-	    temp_data,
+	var	chart_meta_data = {}, chart_meta_data_min = {}, chart_meta_data_max = {},
 		index = data.list[0].dt_txt.lastIndexOf(' ');
-
+	
 	for(let i = 0; i < data.list.length; i++) {
 
+		//temp
 		chart_meta_data.icon = data.list[i].weather[0].icon;
-		chart_meta_data.dt = data.list[i].dt_txt.slice(index + 1);
+		chart_meta_data.dt = 1*data.list[i].dt_txt.substr(index + 1, 2);
 		chart_meta_data.temp = data.list[i].main.temp;
 
-		// temp_data = chart_meta_data;
-		// chart_data.push(chart_meta_data);
-		// chart_data[i] = JSON.parse(JSON.stringify(chart_meta_data));
-		// chart_data.push(Object.assign({}, chart_meta_data ));
-		var ture_null = Object.create( null );
-		chart_data.push( ture_null, chart_meta_data);
+		var temp_clone_data = Object.assign( {}, chart_meta_data);
+		chart_data.push( temp_clone_data );
+
 	}
-	return chart_data;
+	
+	console.table(chart_data);
+	
 }
 
-d3.json('../data/data.json', function(error, json) {
+d3.json('../data/shenzhen_forcast.json', function(error, json) {
 	if(error) return console.warn(error); 
 	dataReDesign(json);
 });
@@ -189,6 +193,8 @@ var data = [{
 	"sale": "176",
 	"year": "2010"
 }];
+
+
 //获取chart位置,定义一些基础数据
 var chart = d3.select('#chart'),
     WIDTH = 1000,
@@ -207,8 +213,8 @@ var chart = d3.select('#chart'),
  定义x,y轴线
 */
 
-x_scale = d3.scale.linear().range([MARGINS.left, WIDTH - MARGINS.right]).domain([2000, 2010]);
-y_scale = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom]).domain([134, 215]);
+x_scale = d3.scale.linear().range([MARGINS.left, WIDTH - MARGINS.right]).domain([0, 24]);
+y_scale = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom]).domain([10, 40]);
 
 // d3.svg.axis()画图开始
 
@@ -219,33 +225,32 @@ y_axis = d3.svg.axis()
   .scale(y_scale)
   .orient('left');
 
-// append to svg conrainer
-
+// append axis to svg conrainer
 chart.append('svg:g')
   .attr('transform', 'translate(0,' + (HEIGHT - MARGINS.bottom) + ')')
-  .attr('class', 'axix')
+  .attr('class', 'axis')
   .call(x_axis);
 
 chart.append('svg:g')
   .attr('transform', 'translate(' + (MARGINS.left) + ',0)')
-  .attr('class', 'axix')
+  .attr('class', 'axis')
   .call(y_axis);
 
 //apply the data with axis and draw lines: d3.svg.line
 //定义了话数据曲线的方法
 var lineGenerator = d3.svg.line()
   .x(function(d) {
-	  return x_scale(d.year);
+	  return x_scale(d.dt);
   })
   .y(function(d) {
-	  return y_scale(d.sale);
+	  return y_scale(d.temp);
   })
   .interpolate('basis');
 
 //append line path to svg and map the sample data to the plotting space using lineGen function
 chart.append('svg:path')
-  .attr('d', lineGenerator(data))
-  .attr('stroke', 'red')
+  .attr('d', lineGenerator(chart_data))
+  .attr('stroke', 'green')
   .attr('stroke-width', 2)
   .attr('fill', 'none');
 

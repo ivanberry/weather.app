@@ -123,6 +123,21 @@ Creates a request for the JSON file at the specified url with the mime type "app
 
 [d3-core API](https://github.com/d3/d3/wiki/Core)
 
+###  d3.svg.line
+
+```js
+//定义了话数据曲线的方法
+var lineGenerator = d3.svg.line()
+  .x(function(d) {
+	  return x_scale(d.dt);
+  })
+  .y(function(d) {
+	  return y_scale(d.temp);
+  })
+  .interpolate('basis');
+  ```
+  lineGenerator接受的参数是一个数组,包含多个对象的数据集合。
+
 ### 问题
 
 1 值的复制
@@ -150,4 +165,32 @@ a.name === "ivanberry"; //false
 3 JSON.parse(JSON.stringify(jsondata));
 
 4 [Object.create()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/create)
+
+还是这个问题:
+
+```js
+var true_null = Object.create( null );
+
+var chart_meta_data,data;
+
+data.push(true_null, chart_meta_data);
+
+data.push( {}, chart_meta_data);
+```
+
+为什么这里的`chart_meta_data`依然会被覆盖呢? 而第二种实现方法又不会?
+
+
+### 字符转数字方法
+
+将x转化为数字,当然x是对应的数字字符串
+
+-  Numner(x)
+-  parseInt(x, 10)
+-  parseFloat(x)
+-  +x
+-  1*x
+
+
+
 

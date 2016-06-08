@@ -138,7 +138,6 @@ body {
     color: transparent;
     /* IE7 */
     *text-indent: 0;
-    *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '\3000');
 }
 .icon:before {
     content: '\3000'; 
@@ -219,12 +218,10 @@ section {
 	margin: 0 auto;
 }
 
-.axis path {
+.axis, .axis g {
 	fill: none;
-	storke: #777;
+	stroke: #777;
 	shape-rendering: crispEdges;
-}
-.axis text {
 	font-family: Lato;
 	font-size: 13px;
 }
