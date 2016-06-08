@@ -179,6 +179,7 @@ var chart = d3.select('#chart'),
  d3.scale.linear(range, domain) 建立图表范围
  range定义图表的画布范围,domain定义轴的步进,Array
  定义x,y轴线
+ TODO:
  1 坐标轴步进通过返回数据最值确定
  */
 
@@ -230,7 +231,7 @@ forcast.addEventListener('click', function(){
 		chart.append('svg:path')
 		  .attr('d', lineGenerator(chart_data))
 		  .attr('stroke', 'green')
-		  .attr('stroke-width', 2)
+		  .attr('stroke-width', 1)
 		  .attr('fill', 'none');
 
 	});
