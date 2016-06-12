@@ -4,7 +4,7 @@
 
 - DNS查询
 - 页面请求发送
-- ~~请求认证~~请求拆分
+- ~~请求认证~~请求数据拆分
 - HTML渲染
 - DOM树构建
 - Render树构建
@@ -36,7 +36,7 @@ dns查询需要的额外带宽几乎可以忽略,然而却可能带来很高的�
 
 ### 页面请求发送
 
-![页面请求发送](./request-of-page.md)
+![页面请求发送](./request-of-page.png)
 
 
 ### Parse Render Layout Paint过程
