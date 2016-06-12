@@ -75,7 +75,7 @@ dns查询需要的额外带宽几乎可以忽略,然而却可能带来很高的�
 
 4. Render绘制
 
-[![Render绘制过程](./html-parsing.png)](./render-layout.mp4)
+[![Render绘制过程](./layout-parsing.png)](./render-layout.mp4)
 
 
 
