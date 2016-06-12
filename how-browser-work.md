@@ -4,7 +4,7 @@
 
 - DNS查询
 - 页面请求发送
-- ~~请求认证~~请求数据拆分
+- ~~请求认证~~请求数据拆分(tokenizer)
 - HTML渲染
 - DOM树构建
 - Render树构建
@@ -76,13 +76,5 @@ dns查询需要的额外带宽几乎可以忽略,然而却可能带来很高的�
 4. Render绘制
 
 [![Render绘制过程](./layout-parsing.png)](http://arvindr21.github.io/howBrowserWorks/imgs/dns/video/geckoreflow-mozillaorg.mp4)
-
-
-
-
-
-
-
-
 
 
