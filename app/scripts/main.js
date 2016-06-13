@@ -233,7 +233,7 @@ document.getElementById('data-test').addEventListener('click', function(){
 	$.getJSON({
 		url: './data/data.json'
 	})
-	  .done(xAxisData)
+	  .done(chartInit)
 	  .fail(function(){
 		  console.warn('WTF!!!');
 	  });
