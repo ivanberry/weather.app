@@ -8,7 +8,6 @@ var article = document.querySelector('.now-container');
 var el = document.querySelector('#weather-handler');
 var URL_FORECAST = 'http://api.openweathermap.org/data/2.5/forecast';
 var URL_CURRENT = 'http://api.openweathermap.org/data/2.5/weather';
-
 var weather_icons_url = 'http://openweathermap.org/img/w/';
 var APPID = '10b3d2f0dae67a22162adf2273b000d6';
 
@@ -92,14 +91,15 @@ function dateConventor(UNIX_stamps){
 	minute = '0' + date.getMinutes();
 	second = '0' + date.getSeconds();
 
-	dates = [year, month, day],
-	  times = [hour, minute, second];
+	dates = [year, month, day];
+	times = [hour, minute, second];
 
 	for(var i = 0; i < times.length; i++){
 		times[i] = times[i].substr(-2);
 	}
 
-	return time = dates.join('-') + ' ' + times.join(':');
+	// return time = dates.join('-') + ' ' + times.join(':');
+	return hour;
 }
 
 function createWeatherCard(name){
@@ -133,116 +133,135 @@ function createWeatherCard(name){
 
 //重组数据为三元
 
-var chart_data = [],
-  chart_min_data = [],
-  chart_max_data = [];
+var chart_data_list = [];
 
 //定义一个用来传入纯粹数据的空对象
-var true_null = Object.create(null);
 
 function dataReDesign(data){
 
-	var	chart_meta_data = {}, chart_meta_data_min = {}, chart_meta_data_max = {},
-		index = data.list[0].dt_txt.lastIndexOf(' ');
+	var chart_meta_data = {}, chart_meta_data_min = {}, chart_meta_data_max = {},
+	  index = data.list[0].dt_txt.lastIndexOf(' ');
 
-	for(let i = 0; i < data.list.length; i++) {
+	for(let i = 0; i < data.list.length; i++){
 
 		//temp
-		chart_meta_data.icon = data.list[i].weather[0].icon;
-		chart_meta_data.dt = 1 * data.list[i].dt_txt.substr(index + 1, 2);
-		chart_meta_data.temp = (data.list[i].main.temp - 273.15).toFixed(2, 10);
+		// chart_meta_data.icon = data.list[i].weather[0].icon;
+
+		//easy way converts string to number
+		chart_meta_data.dt = data.list[i].dt_txt.substr(index + 1, 2);
+
+		//K to C
+		chart_meta_data.temp = 1 * (data.list[i].main.temp - 273.15).toFixed(2, 10);
 
 		var temp_clone_data = Object.assign({}, chart_meta_data);
-		chart_data.push(temp_clone_data);
+
+		//定义到全局,chart_data会推入所有查询的数据,每次查询前需清空
+		chart_data_list.push(temp_clone_data);
+
 
 	}
 
-	console.table(chart_data);
-	console.log(chart_data);
+	
+}
+
+var chart_data = [];
+
+function arraySlice(data_list, index){
+
+	var length = data_list.length;
+
+	for(let i = 0; i < length; i += index){
+
+		chart_data.push(data_list.slice(i, index + i));
+
+	}
+
+	return chart_data;
+}
+
+var button = document.getElementById('chart-forcast');
+button.addEventListener('click', chartInit, false);
+	
+function chartInit(data){
+
+	$('#chart-container').highcharts({
+		title: {
+			text: 'Weather in 5 days'
+		},
+		xAxis: {
+			categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+		},
+		yAxis: {
+			//定义纵坐标值,当用ceiling定义时,根据后续数据来自动拓展步进
+			//floor: lowest number
+			//ceiling: highest number
+			floor: 0,
+			ceiling: 40
+		},
+		series: [{
+			data: [0, 1, 0, 2, 3, 5, 8, 5, 15, 14, 25, 54]
+		}]
+
+	  });
+}
+
+
+//新定义一个横坐标数据
+function xAxisData(data){
+	//查询时间
+	var now_date = new Date(),
+	    now_date_hour = now_date.getHours();
+
+	//展现当前时间后的24小时数据:匹配json数据中时间与当前时间匹配的时间点,截取之后的24小时的数据
+	
+	//格式化时间戳,获取时间
+	var date_array = [];
+
+	//推入所有获取的时间
+	for(let i = 0; i < data.list.length; i++) {
+		date_array.push(data.list[i].dt);
+	}
+	
+	//返回小时数
+	date_array.forEach(function(element, index){
+		var hour;
+
+		var date = new Date(element * 1000),
+		    hour = date.getHours();
+		
+		date_array[index] = hour;
+	
+	});
+
+	function dataArray(){
+		console.table(date_array);
+	}
+
+	return dataArray;
 
 }
 
 
-//获取chart位置,定义一些基础数据
-var chart = d3.select('#chart'),
-  WIDTH = 1000,
-  HEIGHT = 500,
-  MARGINS = {
-	  top : 20,
-	  right : 20,
-	  bottom : 20,
-	  left : 50
-  },
-  x_scale, y_scale, x_axis, y_axis;
-
-/*
- d3.scale.linear(range, domain) 建立图表范围
- range定义图表的画布范围,domain定义轴的步进,Array
- 定义x,y轴线
- TODO:
- 1 坐标轴步进通过返回数据最值确定
- */
-
-x_scale = d3.scale.linear().range([MARGINS.left, WIDTH - MARGINS.right]).domain([0, 24]);
-y_scale = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom]).domain([5, 36]);
-
-
-// d3.svg.axis()画图开始
-
-x_axis = d3.svg.axis()
-  .scale(x_scale);
-
-y_axis = d3.svg.axis()
-  .scale(y_scale)
-  .orient('left');
-
-// append axis to svg conrainer
-chart.append('svg:g')
-  .attr('transform', 'translate(0,' + (HEIGHT - MARGINS.bottom) + ')')
-  .attr('class', 'axis')
-  .call(x_axis);
-
-chart.append('svg:g')
-  .attr('transform', 'translate(' + (MARGINS.left) + ',0)')
-  .attr('class', 'axis')
-  .call(y_axis);
-
-//apply the data with axis and draw lines: d3.svg.line
-//定义画数据曲线的方法
-var lineGenerator = d3.svg.line()
-  .x(function(d){
-	  return x_scale(d.dt);
-  })
-  .y(function(d){
-	  return y_scale(d.temp);
-  })
-  .interpolate('basis');
-
-
-var forcast = document.querySelector('.chart-container h1');
-
-forcast.addEventListener('click', function(){
+document.getElementById('data-test').addEventListener('click', function(){
 	
-	d3.json(URL_FORECAST + '?q=' + input.value + '&APPID=' + APPID + '&lang=zh_cn', function(error, json) {
-		if(error) return console.warn(error);
-		dataReDesign(json);
+	$.getJSON({
+		url: './data/data.json'
+	})
+	  .done(xAxisData)
+	  .fail(function(){
+		  console.warn('WTF!!!');
+	  });
 
-		//append line path to svg and map the sample data to the plotting space using lineGen function
-		chart.append('svg:path')
-		  .attr('d', lineGenerator(chart_data))
-		  .attr('stroke', 'green')
-		  .attr('stroke-width', 1)
-		  .attr('fill', 'none');
+}, false);
 
-	});
-
-});
-
-/**
- *  @param: x_axis 横坐标定义
-	@param: y_axis 纵坐标定义
-*/
-
-/*function drawLine(x, y) {
+//新定义一个跟当前时间展现24小时的天气预测数据
+function weatherData(data) {
 	
-}*/
+}
+
+
+
+
+
+
+
