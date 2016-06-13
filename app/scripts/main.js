@@ -128,8 +128,6 @@ function createWeatherCard(name){
 
 
 }
-// 定义动画
-// D3.js引入
 
 //重组数据为三元
 
@@ -145,7 +143,7 @@ function dataReDesign(data){
 	for(let i = 0; i < data.list.length; i++){
 
 		//temp
-		// chart_meta_data.icon = data.list[i].weather[0].icon;
+		chart_meta_data.icon = data.list[i].weather[0].icon;
 
 		//easy way converts string to number
 		chart_meta_data.dt = data.list[i].dt_txt.substr(index + 1, 2);
@@ -164,26 +162,17 @@ function dataReDesign(data){
 	
 }
 
-var chart_data = [];
-
-function arraySlice(data_list, index){
-
-	var length = data_list.length;
-
-	for(let i = 0; i < length; i += index){
-
-		chart_data.push(data_list.slice(i, index + i));
-
-	}
-
-	return chart_data;
-}
 
 var button = document.getElementById('chart-forcast');
 button.addEventListener('click', chartInit, false);
 	
 function chartInit(data){
+	
+	//格式化时间戳,获取时间
+	var date_array = [];
 
+	xAxisData(data);
+	
 	$('#chart-container').highcharts({
 		title: {
 			text: 'Weather in 5 days'
@@ -214,9 +203,6 @@ function xAxisData(data){
 
 	//展现当前时间后的24小时数据:匹配json数据中时间与当前时间匹配的时间点,截取之后的24小时的数据
 	
-	//格式化时间戳,获取时间
-	var date_array = [];
-
 	//推入所有获取的时间
 	for(let i = 0; i < data.list.length; i++) {
 		date_array.push(data.list[i].dt);
@@ -232,18 +218,18 @@ function xAxisData(data){
 		date_array[index] = hour;
 	
 	});
-
-	function dataArray(){
-		console.table(date_array);
-	}
-
-	return dataArray;
+	
+	console.table(date_array);
 
 }
 
+//新定义一个跟当前时间展现24小时的天气预测数据
+function weatherData(data) {
+	
+}
 
 document.getElementById('data-test').addEventListener('click', function(){
-	
+
 	$.getJSON({
 		url: './data/data.json'
 	})
@@ -253,13 +239,6 @@ document.getElementById('data-test').addEventListener('click', function(){
 	  });
 
 }, false);
-
-//新定义一个跟当前时间展现24小时的天气预测数据
-function weatherData(data) {
-	
-}
-
-
 
 
 
