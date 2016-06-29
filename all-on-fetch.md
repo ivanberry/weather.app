@@ -3,10 +3,8 @@
 
 ## 兼容性
 
->⚠  Caniuse data is more than 30 days out of date!
->   Consider updating: npm install -g caniuse-cmd
->
->Fetch ✔ 54.08% ◒ 0.24% [WHATWG Living Standard]
+   
+>Fetch ✔ 53.72% ◒ 0.22% [WHATWG Living Standard]
 >  A modern replacement for XMLHttpRequest. #JSAPI
 >
 >  IE ✘ 
@@ -22,7 +20,6 @@
 >    ⁴Firefox <40 is not completely conforming to the specs and does not respect
 >    the <base> tag for relative URIs in fetch requests.
 >    https://bugzilla.mozilla.org/show_bug.cgi?id=1161625
-    
 
 ## fetch
 

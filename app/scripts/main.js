@@ -16,7 +16,6 @@ el.addEventListener('click', function() {
     // 全局范围内更新了input.value
     cityname = input.value;
     if (!cityname) {
-        console.log('您想查询哪个城市呢?');
         return false;
     }
 
@@ -207,19 +206,7 @@ function chartInit(data){
 function weatherData(data) {}
 
 document.getElementById('data-test').addEventListener('click', function() {
-	// $.getJSON({
-	//     // url: URL_FORECAST,
-	//     url: './data/data.json'
-	//     // data: {
-	// 	 //    q: input.value,
-	// 	 //    APPID: APPID,
-	// 	 //    lang: 'zh-cn'
-	// 	 //
-	//     // }
- //    }).done(chartInit)
- //      .fail(function() {
- //        console.warn('WTF!!!');
- //    });
+    
     fetch('./data/data.json')
         .then(responseJson)
         .then(chartInit)
