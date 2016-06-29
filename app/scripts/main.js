@@ -19,6 +19,7 @@ el.addEventListener('click', function() {
         return false;
     }
 
+    //get the data
     fetch(URL_CURRENT + '?q=' + input.value + '&APPID=' + APPID)
         .then(responseJson)
         .then(getDataSuccess)
@@ -153,7 +154,7 @@ function chartInit(data){
 	//调用函数，初始化横坐标
 	xAxisData(data);
 
-	$('#chart-container').highcharts({
+	Highcharts.chart('chart-container',{
 		title : {
 			text : 'Weather in 5 days'
 		},
@@ -206,13 +207,14 @@ function chartInit(data){
 function weatherData(data) {}
 
 document.getElementById('data-test').addEventListener('click', function() {
-    
+
+    //get test data
     fetch('./data/data.json')
         .then(responseJson)
         .then(chartInit)
         .catch(function(error) {
-            console.warn('error' + response.statusText);
-        })
+            console.warn('error');
+        });
 
 }, false)
 
