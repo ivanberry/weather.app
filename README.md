@@ -203,7 +203,8 @@ data.push( {}, chart_meta_data);
 
 ### 浏览器基础知识
 
-- [x] [浏览器基础知识浓缩版](./how-browser-work.md)
+- [x] [浏览器基础知识浓缩版](https://github.com/ivanberry/all-on-browser/blob/master/how-browser-work.md)
+- [x] [浏览器基础知识细节版](https://github.com/ivanberry/all-on-browser/blob/master/all-about-browser.md)
 
 ### 利用react完成重构
 
