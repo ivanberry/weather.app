@@ -21,9 +21,7 @@ el.addEventListener('click', function() {
     }
 
     fetch(URL_CURRENT + '?q=' + input.value + '&APPID=' + APPID)
-        .then(function(response) {
-            return response.json();
-        })
+        .then(responseJson)
         .then(getDataSuccess)
         .catch(function(error) {
             console.log('Fetch Error: -S', error);
@@ -209,19 +207,32 @@ function chartInit(data){
 function weatherData(data) {}
 
 document.getElementById('data-test').addEventListener('click', function() {
-	$.getJSON({
-	    // url: URL_FORECAST,
-	    url: './data/data.json'
-	    // data: {
-		 //    q: input.value,
-		 //    APPID: APPID,
-		 //    lang: 'zh-cn'
-		 //
-	    // }
-    }).done(chartInit)
-      .fail(function() {
-        console.warn('WTF!!!');
-    });
+	// $.getJSON({
+	//     // url: URL_FORECAST,
+	//     url: './data/data.json'
+	//     // data: {
+	// 	 //    q: input.value,
+	// 	 //    APPID: APPID,
+	// 	 //    lang: 'zh-cn'
+	// 	 //
+	//     // }
+ //    }).done(chartInit)
+ //      .fail(function() {
+ //        console.warn('WTF!!!');
+ //    });
+    fetch('./data/data.json')
+        .then(responseJson)
+        .then(chartInit)
+        .catch(function(error) {
+            console.warn('error' + response.statusText);
+        })
 
 }, false)
+
+
+//定义一个fetch数据JSON方法
+
+function responseJson(response) {
+    return response.json();
+}
     
