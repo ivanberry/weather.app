@@ -7,6 +7,7 @@
 </head>
 <body>
 <h2>xxx</h2>
+<img src="" alt="fetch img" width='50'>
 <script>
     fetch('./data/data.json')
         .then(
@@ -30,6 +31,18 @@
         .catch(function(err) {
             console.log('Fetch Error: -S', err);
         });
+
+
+       fetch('./app/images/Weather_wind.png')
+            .then(function(response) {
+                return response.blob();
+            }) 
+            .then(function(imageBlob) {
+
+                console.log(URL.createObjectURL);
+                document.querySelector('img').src = URL.createObjectURL(imageBlob);
+
+            });
 </script>
 </body>
 </html>

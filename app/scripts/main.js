@@ -19,22 +19,21 @@ el.addEventListener('click', function() {
         console.log('您想查询哪个城市呢?');
         return false;
     }
-    $.getJSON({
-        url: URL_CURRENT,
-        data: {
-            q: input.value,
-            APPID: APPID,
-            lang: 'zh_cn'
-        }// url: '../data/shenzhen_forcast.json',
-        // url: '../data/shenzhen_current.json'
-    }).done(getDataSuccess).fail(function() {
-        console.log('errors happeded!');
-    }).always(console.log('get the XHR object'));
+
+    fetch(URL_CURRENT + '?q=' + input.value + '&APPID=' + APPID)
+        .then(function(response) {
+            return response.json();
+        })
+        .then(getDataSuccess)
+        .catch(function(error) {
+            console.log('Fetch Error: -S', error);
+        });
+
 });
+
 function getDataSuccess(data) {
-    console.log(cityname);
-    var xhr = data
-      , identity = '.now-' + cityname;
+    var xhr = data,
+        identity = '.now-' + cityname;
     // create a new weather card
     createWeatherCard(cityname);
     //将对应的城市名以className传入
