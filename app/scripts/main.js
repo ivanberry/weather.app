@@ -105,8 +105,6 @@ function dataReDesign(data) {
         chart_data_list.push(temp_clone_data);
     }
 }
-var button = document.getElementById('chart-forcast');
-button.addEventListener('click', chartInit, false);
 
 function chartInit(data){
 	//格式化时间戳,获取时间
@@ -130,7 +128,7 @@ function chartInit(data){
 		}
 
 		for(let i = 0; i < data.list.length; i++){
-			date_array_temperature.push(data.list[i].main.temp);
+			date_array_temperature.push( 1 * (data.list[i].main.temp - 273.15).toFixed(1)  ) ;
 		}
 
 		//返回小时数数组
@@ -154,66 +152,47 @@ function chartInit(data){
 	//调用函数，初始化横坐标
 	xAxisData(data);
 
-	Highcharts.chart('chart-container',{
-		title : {
-			text : 'Weather in 5 days'
-		},
-		subtitle : {
-			text : 'Source: OpenWeather',
-			x : -20
-		},
-		xAxis : {
-			// categories: date_array_time
-			categories : ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-		},
-		yAxis : {
-			//定义纵坐标值,当用ceiling定义时,根据后续数据来自动拓展步进
-			//floor: lowest number
-			//ceiling: highest number
-			title : {
-				text : 'Temperature  (℃)'
-			},
-			// plotLines: [{
-			//    value: 0,
-			//    width: 2,
-			//    color: '#f00'
-			// }],
-			floor : 0,
-			ceiling : 40
-		},
-		legend : {
-			layout : 'vertical',
-			align : 'right',
-			verticalAlign : 'middle',
-			borderWidth : 1
-		},
-		series : [{
-			//温度数据
-			name : input.value || 'Shenzhen',
-			// data: date_array_temperature
-			date : [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
-		}, {
-			//温度数据
-			name : input.value || 'Yiyang',
-			// data: date_array_temperature
-			date : [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
-		}
-		]
+    //画图
+    Highcharts.chart('chart-container', {
+	    title: {
+		    text: 'Weather forcast in 5 days'
+	    },
+	    subtitle: {
+		    test: 'Source: OpenWeather'
+	    },
+	    xAxis: {
+		    categories: oneDate.time
+	    },
+	    yAxis: {
+		    title: {
+			    text: 'Temperature ℃'
+		    },
+		    labels: {
+			    formatter: function() {
+				    return this.value + '℃';
+			    }
+		    }
+	    },
+        series: [{
+	        name: input.value || 'ShenZhen',
+            data: oneDate.temperature
+        }]
+    });
 
-	});
 }
 
-//新定义一个跟当前时间展现24小时的天气预测数据
-function weatherData(data) {}
 
-document.getElementById('data-test').addEventListener('click', function() {
+
+document.getElementById('chart').addEventListener('click', function() {
 
     //get test data
-    fetch('./data/data.json')
+
+    // fetch('./data/data.json')
+	fetch(URL_FORECAST+ '?q=' + input.value + '&APPID=' + APPID + '&lang=zh-cn')
         .then(responseJson)
         .then(chartInit)
         .catch(function(error) {
-            console.warn('error');
+            console.log('Fuck Stupit Error!');
         });
 
 }, false)
