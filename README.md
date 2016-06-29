@@ -92,7 +92,12 @@ element是插入位置的参考位置。
 ## 重构任务
 
 - [ ] 原生实现Ajax
+
+利用fetch API实现Ajax [Fetch API]
+
+
 - [ ] 天气图标更新
+
 - [ ] 模块化js,工具Rolluuuuuuuuuuuuuuuuuuup
 
 
@@ -198,8 +203,7 @@ data.push( {}, chart_meta_data);
 
 ### 浏览器基础知识
 
-[浏览器基础知识浓缩版](./how-browser-work.md)
-
+- [x] [浏览器基础知识浓缩版](./how-browser-work.md)
 
 ### 利用react完成重构
 

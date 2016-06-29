@@ -110,54 +110,119 @@ function dataReDesign(data) {
 }
 var button = document.getElementById('chart-forcast');
 button.addEventListener('click', chartInit, false);
-function chartInit(data) {
-    //格式化时间戳,获取时间
-    var date_array = [];
-    xAxisData(data);
-    $('#chart-container').highcharts({
-        title: {
-            text: 'Weather in 5 days'
-        },
-        xAxis: {
-            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-        },
-        yAxis: {
-            //定义纵坐标值,当用ceiling定义时,根据后续数据来自动拓展步进
-            //floor: lowest number
-            //ceiling: highest number
-            floor: 0,
-            ceiling: 40
-        },
-        series: [{
-            data: [0, 1, 0, 2, 3, 5, 8, 5, 15, 14, 25, 54]
-        }]
-    });
+
+function chartInit(data){
+	//格式化时间戳,获取时间
+	var date_array_time = [],
+	  splice_index, //定义数据分割参数
+	  date_array_temperature = [],
+	  oneDate = {
+		  time: [],
+		  temperature: []
+	  };
+
+	//新定义一个横坐标数据
+	function xAxisData(data){
+		//查询时间
+		var now_date = new Date()
+		  , now_date_hour = now_date.getHours();
+
+		//推入所有获取的时间
+		for(let i = 0; i < data.list.length; i++){
+			date_array_time.push(data.list[i].dt);
+		}
+
+		for(let i = 0; i < data.list.length; i++){
+			date_array_temperature.push(data.list[i].main.temp);
+		}
+
+		//返回小时数数组
+		date_array_time.forEach(function(element, index){
+			var hour;
+			var date = new Date(element * 1000)
+			  , hour = date.getHours();
+			date_array_time[index] = hour;
+
+			return date_array_time;
+		});
+
+		//展现当前时间后的24小时数据:匹配json数据中时间与当前时间匹配的时间点,截取之后的24小时的数据
+		oneDate.time = date_array_time.splice(now_date_hour, 8);
+		oneDate.temperature = date_array_temperature.splice(now_date_hour, 8);
+
+		//新定义温度数据
+
+	}
+
+	//调用函数，初始化横坐标
+	xAxisData(data);
+
+	$('#chart-container').highcharts({
+		title : {
+			text : 'Weather in 5 days'
+		},
+		subtitle : {
+			text : 'Source: OpenWeather',
+			x : -20
+		},
+		xAxis : {
+			// categories: date_array_time
+			categories : ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+		},
+		yAxis : {
+			//定义纵坐标值,当用ceiling定义时,根据后续数据来自动拓展步进
+			//floor: lowest number
+			//ceiling: highest number
+			title : {
+				text : 'Temperature  (℃)'
+			},
+			// plotLines: [{
+			//    value: 0,
+			//    width: 2,
+			//    color: '#f00'
+			// }],
+			floor : 0,
+			ceiling : 40
+		},
+		legend : {
+			layout : 'vertical',
+			align : 'right',
+			verticalAlign : 'middle',
+			borderWidth : 1
+		},
+		series : [{
+			//温度数据
+			name : input.value || 'Shenzhen',
+			// data: date_array_temperature
+			date : [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
+		}, {
+			//温度数据
+			name : input.value || 'Yiyang',
+			// data: date_array_temperature
+			date : [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
+		}
+		]
+
+	});
 }
-//新定义一个横坐标数据
-function xAxisData(data) {
-    //查询时间
-    var now_date = new Date()
-      , now_date_hour = now_date.getHours();
-    //展现当前时间后的24小时数据:匹配json数据中时间与当前时间匹配的时间点,截取之后的24小时的数据
-    //推入所有获取的时间
-    for (let i = 0; i < data.list.length; i++) {
-        date_array.push(data.list[i].dt);
-    }
-    //返回小时数
-    date_array.forEach(function(element, index) {
-        var hour;
-        var date = new Date(element * 1000)
-          , hour = date.getHours();
-        date_array[index] = hour;
-    });
-    console.table(date_array);
-}
+
 //新定义一个跟当前时间展现24小时的天气预测数据
 function weatherData(data) {}
+
 document.getElementById('data-test').addEventListener('click', function() {
-    $.getJSON({
-        url: './data/data.json'
-    }).done(chartInit).fail(function() {
+	$.getJSON({
+	    // url: URL_FORECAST,
+	    url: './data/data.json'
+	    // data: {
+		 //    q: input.value,
+		 //    APPID: APPID,
+		 //    lang: 'zh-cn'
+		 //
+	    // }
+    }).done(chartInit)
+      .fail(function() {
         console.warn('WTF!!!');
     });
-}, false);
+
+}, false)
+    

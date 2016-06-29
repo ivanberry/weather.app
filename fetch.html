@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Fetch</title>
+</head>
+<body>
+<h2>xxx</h2>
+<script>
+    fetch('./data/data.json')
+        .then(
+                function(response) {
+                    if(response.status != 200) {
+                        console.log('some error happens.Status Code:' + response.status);
+                        return;
+                    }
+
+                    response.json().then(function(data) {
+                        for( let i of response.headers) {
+
+                            console.log(i);
+                        }
+
+                        console.log(data);
+                    });
+                }
+
+            )
+        .catch(function(err) {
+            console.log('Fetch Error: -S', err);
+        });
+</script>
+</body>
+</html>
