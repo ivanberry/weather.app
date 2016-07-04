@@ -70,6 +70,7 @@ function dateConventor(UNIX_stamps) {
     // return time = dates.join('-') + ' ' + times.join(':');
     return hour;
 }
+
 function createWeatherCard(name) {
     var city = name;
     var card = '<h3 class="city-name"></h3><div class="now-details"><div class="flex"><img class="icon weather-icon"><div class="temp_details"><span class="now-number">22</span><span>℃</span></div></div><div class="now-weather"><h3 class="now-humidity">湿度<span></span></h3><h3 class="now-wind-speed">风级<span></span></h3></div></div><div class="now-description"><span class="data-get-time">the time get the data</span><p class="data-description">data description about the weather now</p></div>';
@@ -142,10 +143,8 @@ function chartInit(data){
 		});
 
 		//展现当前时间后的24小时数据:匹配json数据中时间与当前时间匹配的时间点,截取之后的24小时的数据
-		oneDate.time = date_array_time.splice(now_date_hour, 8);
-		oneDate.temperature = date_array_temperature.splice(now_date_hour, 8);
-
-		//新定义温度数据
+		oneDate.time = date_array_time.splice(0, 8);
+		oneDate.temperature = date_array_temperature.splice(0, 8);
 
 	}
 
@@ -203,4 +202,4 @@ document.getElementById('chart').addEventListener('click', function() {
 function responseJson(response) {
     return response.json();
 }
-    
+
