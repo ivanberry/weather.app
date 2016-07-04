@@ -4,11 +4,84 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Fetch</title>
+    <style>
+
+        .current {
+            background-color: lightblue;
+            color: #f00;
+        }
+        .progress {
+            border: 1px solid blue;
+            width: 100px;
+            position: fixed;
+            top: 10px;
+            right: 10px;
+        }
+        .progress > div {
+            height: 12px;
+            background-color: blue;
+            width: 0%;
+        }
+        body {
+            height: 2000px;
+        }
+    </style>
 </head>
 <body>
 <h2>xxx</h2>
 <img src="" alt="fetch img" width='50'>
+<nav>
+    <a href="#1">1</a>
+    <a href="#2">2</a>
+    <a href="#3">3</a>
+</nav>
+
+<p>Drag the bar to change its width:</p>
+<div style="background: orange; width: 60px; height: 20px">
+</div>
+
+<p>按键为P时文字颜色会变紫色哟！</p>
+<div class="progress"><div></div></div>
+<p>Scroll me up...</p>
 <script>
+//mousemove事件
+
+  var lastX; // Tracks the last observed mouse X position
+  var rect = document.querySelector("div");
+  rect.addEventListener("mousedown", function(event) {
+    if (event.which == 1) {
+      lastX = event.pageX;
+      addEventListener("mousemove", moved);
+      event.preventDefault(); // Prevent selection
+    }
+  });
+
+  function buttonPressed(event) {
+    if (event.buttons == null)
+      return event.which != 0;
+    else
+      return event.buttons != 0;
+  }
+  function moved(event) {
+    if (!buttonPressed(event)) {
+      removeEventListener("mousemove", moved);
+    } else {
+      var dist = event.pageX - lastX;
+      var newWidth = Math.max(10, rect.offsetWidth + dist);
+      rect.style.width = newWidth + "px";
+      lastX = event.pageX;
+    }
+  }
+
+
+  //scroll 事件
+  var bar = document.querySelector('.progress div');
+  addEventListener('scroll', function() {
+    var max = document.body.scrollHeight - innerHeight;
+    var percent = (pageYOffset / max) * 100;
+    bar.style.width = percent + '%';
+  }, false);
+// get the data using fetch
     fetch('./data/data.json')
         .then(
                 function(response) {
@@ -43,6 +116,39 @@
                 document.querySelector('img').src = URL.createObjectURL(imageBlob);
 
             });
+
+
+// navigator
+ var nav = document.querySelector('nav');
+
+ nav.addEventListener('click', function(e) {
+    var current_tab = document.querySelector('#nav_wrapper .current');
+    target = e.target;
+    if(current_tab) {
+        current_tab.className.remove('current');
+    }else {
+        target.classList.add('current');
+    }
+ });
+
+addEventListener('keydown', function(event) {
+    if(event.keyCode === 80) {
+        document.querySelector('p').style.color = 'purple';
+    } else {
+        document.querySelector('p').style.fontSize = '40px';
+    }
+}, false);
+
+addEventListener('keyup', function(event) {
+    if(event.keyCode === 80) {
+        document.body.style.backgroundColor = 'lightgreen';
+    }
+});
+
+
+
+
+
 </script>
 </body>
 </html>

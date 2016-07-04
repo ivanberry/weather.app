@@ -5,3 +5,4 @@ test/bower_components
 **.swp
 .idea
 .editorconfig
+.sass-cache

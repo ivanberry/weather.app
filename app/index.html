@@ -19,43 +19,22 @@
 
 	<!-- 查询 -->
 	<form action="">
-		<input data-balloon-length="medium" data-balloon="请输入想查询的城市..." data-balloon-pos="up" name="weaher-now" type="text" id="js-getWeather" placeholder="请输入想查询的城市...(shenzhen/深圳)">
-		<label data-balloon-length="medium" data-balloon="请输入想查询的城市" data-balloon-pos="up" name="weather-now" for="js-getWeather" id="weather-handler">查询</label>
+		<input name="weather-now" type="text" id="js-getWeather" placeholder="请输入想查询的城市(shenzhen)">
+		<label name="weather-now" for="js-getWeather" id="weather-handler">查询</label>
 
 	</form>
 
-	<article class="now-container">
-		<!--<button class="forcase-test-button">详情</button>-->
-	</article>
+	<!--当前天气预报数据容器-->
+	<article class="now-container"></article>
+
+	<!--预测数据容器-->
 	<article class="forcase-container">
-		<section class="forcase" style="display: none">
-			<!-- 天气预报预测数据展示图 -->
-			<div class="forcase-details">
-				<figure class="forcase-fivedays">
-					<caption>5天天气预报</caption>
-
-					<div class="forcase-fivedays__temprature">
-						<h3>温度趋势</h3>
-						<!-- 引入D3.js  -->
-					</div>
-
-					<div class="forcase-fivedays__winds">
-						<h3>风级趋势</h3>
-						<!-- 引入D3.js -->
-					</div>
-
-					<div class="forcase-fivedays__sun">
-						<h3>日照趋势</h3>
-						<!-- 引入D3.js -->
-					</div>
-				</figure>
-			</div>
-		</section>
+		<!--预测数据查询按钮-->
+		<button id="chart" class="button">天气预报</button>
+		<div id="chart-container" style="width: 100%; height: 400px"></div>
 	</article>
+
 </main>
-<section class="chart"></section>
-<button id="chart">天气预报</button>
-<div id="chart-container" style="width: 100%; height: 600px"></div>
 <footer>
 	<h4>Powered by OpenWeather API and Highcharts.js</h4>
 </footer>
@@ -63,3 +42,4 @@
 <script src="scripts/main.js"></script>
 </body>
 </html>
+

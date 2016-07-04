@@ -87,6 +87,7 @@ body{
 }
 /* // reset.scss */
 @import 'typo';
+@import "button";
 
 //design borders mixins
 @mixin border($color) {
@@ -104,15 +105,19 @@ $Text_primary_color:#fff;
 $Text_card_color:#000;
 
 /* weather.app scss */
-
-*{
-	padding:0;
-	margin:0;
-	box-sizing:border-box;
-}
 body{
 	font-size:$Body_font_size;
 	line-height:$Line_height;
+
+	height: 100%;
+
+	//overflow: hidden;
+
+
+	display: flex;
+	justify-content: center;
+	flex-flow: column;
+
 }
 .icon{
 	display:inline-block;
@@ -138,17 +143,19 @@ header{
 	}
 
 }
-input{
-	width:20em;
+
+input[name='weather-now']{
+	width: 30em;
+	padding: 4px 10px;
 }
 article{
-	padding:10px 20px;
+	padding:5px 10px;
 	display:flex;
 	justify-content:flex-start;
 	flex-wrap:wrap;
 }
 section{
-	padding:10px 20px;
+	padding:5px 10px;
 	margin-left:10px;
 }
 .now{
@@ -180,6 +187,9 @@ section{
 	background-color:#ff5722;
 	color:#fff;
 	border:none;
+	outline: none;
+
+	cursor: pointer;
 }
 /* //预报数据展示区域 */
 .forcase-container{
@@ -192,21 +202,4 @@ section{
 	margin:0 auto;
 	text-align: center;
 }
-//.axis, .axis g{
-//	fill:none;
-//	stroke:#777;
-//	shape-rendering:crispEdges;
-//	font-family:Lato;
-//	font-size:13px;
-//}
 
-.axis path {
-	fill: none;
-	stroke: #777;
-	shape-rendering: crispEdges;
-}
-
-.axis text {
-	font-family: Lato;
-	font-size: 13px;
-}

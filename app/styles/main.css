@@ -352,20 +352,26 @@ h1, h2, h3, h4, h5, h6 {
 .typo img {
   max-width: 100%; }
 
+.button {
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  cursor: pointer; }
+
 header, article, section, h2, h3, span, h4, p, div, figure, main, label, input {
   /*  @include border(green); */
   margin: 10px 5px; }
 
 /* colors */
 /* weather.app scss */
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box; }
-
 body {
   font-size: 14px;
-  line-height: 1.42858; }
+  line-height: 1.42858;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  flex-flow: column; }
 
 .icon {
   display: inline-block;
@@ -376,29 +382,29 @@ body {
   text-indent: -99em;
   color: transparent;
   /* IE7 */
-  *text-indent: 0;
-  *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '\3000'); }
+  *text-indent: 0; }
 
 .icon:before {
   content: '\3000'; }
 
 header {
-  background-color: #2196F3;
+  background-color: #2196f3;
   padding: 20px 10px; }
   header h2 {
     color: #fff; }
 
-input[name="weather-now"] {
-  width: 20em; }
+input[name='weather-now'] {
+  width: 30em;
+  padding: 4px 10px; }
 
 article {
-  padding: 10px 20px;
+  padding: 5px 10px;
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap; }
 
 section {
-  padding: 10px 20px;
+  padding: 5px 10px;
   margin-left: 10px; }
 
 .now {
@@ -416,7 +422,26 @@ section {
     flex: 1;
     text-align: right; }
 
-.forcase {
-  flex: 1; }
+/* //测试请求按钮 */
+.forcase-test-button {
+  width: 60px;
+  padding: 5px 15px;
+  border-radius: 5px;
+  background-color: #ff5722;
+  color: #fff;
+  border: none;
+  outline: none;
+  cursor: pointer; }
+
+/* //预报数据展示区域 */
+.forcase-container {
+  background-color: #00bcd4;
+  color: #000; }
+
+/* //d3.js test */
+.chart-container {
+  border: 1px solid lightblue;
+  margin: 0 auto;
+  text-align: center; }
 
 /*# sourceMappingURL=main.css.map */

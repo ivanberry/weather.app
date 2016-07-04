@@ -75,7 +75,7 @@ function createWeatherCard(name) {
     var card = '<h3 class="city-name"></h3><div class="now-details"><div class="flex"><img class="icon weather-icon"><div class="temp_details"><span class="now-number">22</span><span>℃</span></div></div><div class="now-weather"><h3 class="now-humidity">湿度<span></span></h3><h3 class="now-wind-speed">风级<span></span></h3></div></div><div class="now-description"><span class="data-get-time">the time get the data</span><p class="data-description">data description about the weather now</p></div>';
     var button = '<button class=forcase-test-button>详情</button>';
     if (!position) {
-        article.insertAdjacentHTML('afterbegin', '<section class="now " >' + card + button + '</section>');
+        article.insertAdjacentHTML('afterbegin', '<section class="button now " >' + card + button + '</section>');
         sections = document.querySelectorAll('section.now');
         sections[0].classList.add('now-' + city);
         position++;
@@ -192,10 +192,10 @@ document.getElementById('chart').addEventListener('click', function() {
         .then(responseJson)
         .then(chartInit)
         .catch(function(error) {
-            console.log('Fuck Stupit Error!');
+            console.warn('Fuck Stupit Error!');
         });
 
-}, false)
+}, false);
 
 
 //定义一个fetch数据JSON方法
