@@ -25,6 +25,20 @@
         body {
             height: 2000px;
         }
+
+        #element {
+            animation: scale 1s 0s 1 ease-in-out;
+        }
+
+        @keyframes scale {
+            from {
+                transform: scale(.5);
+            }
+            to {
+                transform: scale(1.2);
+            }
+
+        }
     </style>
 </head>
 <body>
@@ -43,6 +57,7 @@
 <p>按键为P时文字颜色会变紫色哟！</p>
 <div class="progress"><div></div></div>
 <p>Scroll me up...</p>
+<button id="element">事件处理函数上下文</button>
 <script>
 //mousemove事件
 
@@ -82,40 +97,40 @@
     bar.style.width = percent + '%';
   }, false);
 // get the data using fetch
-    fetch('./data/data.json')
-        .then(
-                function(response) {
-                    if(response.status != 200) {
-                        console.log('some error happens.Status Code:' + response.status);
-                        return;
-                    }
+    // fetch('./data/data.json')
+    //     .then(
+    //             function(response) {
+    //                 if(response.status != 200) {
+    //                     console.log('some error happens.Status Code:' + response.status);
+    //                     return;
+    //                 }
 
-                    response.json().then(function(data) {
-                        for( let i of response.headers) {
+    //                 response.json().then(function(data) {
+    //                     for( let i of response.headers) {
 
-                            console.log(i);
-                        }
+    //                         console.log(i);
+    //                     }
 
-                        console.log(data);
-                    });
-                }
+    //                     console.log(data);
+    //                 });
+    //             }
 
-            )
-        .catch(function(err) {
-            console.log('Fetch Error: -S', err);
-        });
+    //         )
+    //     .catch(function(err) {
+    //         console.log('Fetch Error: -S', err);
+    //     });
 
 
-       fetch('./app/images/Weather_wind.png')
-            .then(function(response) {
-                return response.blob();
-            }) 
-            .then(function(imageBlob) {
+    //    fetch('./app/images/Weather_wind.png')
+    //         .then(function(response) {
+    //             return response.blob();
+    //         }) 
+    //         .then(function(imageBlob) {
 
-                console.log(URL.createObjectURL);
-                document.querySelector('img').src = URL.createObjectURL(imageBlob);
+    //             console.log(URL.createObjectURL);
+    //             document.querySelector('img').src = URL.createObjectURL(imageBlob);
 
-            });
+    //         });
 
 
 // navigator
@@ -145,10 +160,26 @@ addEventListener('keyup', function(event) {
     }
 });
 
+var element = document.getElementById('element');
+
+var user = {
+    firstname: 'tab',
+    greeting: function(event) {
+        console.log('My name is: ' + this.firstname);
+        console.log(event);
+    }
+};
+
+user.greeting = user.greeting.bind(user);
+
+document.addEventListener('click', function() {
+    console.log('yeah');
+});
 
 
-
-
+element.addEventListener('webkitAnimationEnd', function() {
+    console.log('动画结束');
+});
 </script>
 </body>
 </html>

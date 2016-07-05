@@ -124,7 +124,7 @@ function chartInit(data){
 		  , now_date_hour = now_date.getHours();
 
 		//推入所有获取的时间
-		for(let i = 0; i < data.list.length; i++){
+		for (let i = 0; i < data.list.length; i++){
 			date_array_time.push(data.list[i].dt);
 		}
 
@@ -179,7 +179,6 @@ function chartInit(data){
     });
 
 }
-
 
 
 document.getElementById('chart').addEventListener('click', function() {
