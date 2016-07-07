@@ -442,17 +442,30 @@ section {
 /* //预报数据展示区域 */
 .forcase-container {
   background-color: #00bcd4;
-  color: #000; }
+  color: #000;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  opacity: .4;
+  overflow: hidden; }
 
 .chart-container {
-  border: 1px solid lightblue;
+  width: 800px;
+  height: 600px;
   margin: 0 auto;
   text-align: center; }
 
 #chart-container:not(:target) {
-  display: none; }
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 1s, visibility 2s; }
 
 #chart-container:target {
-  display: block; }
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 1s, visibility 1s; }
 
 /*# sourceMappingURL=main.css.map */
