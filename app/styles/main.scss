@@ -93,6 +93,7 @@ body{
 @mixin border($color) {
 	border:1px solid $color;
 }
+//test code
 header, article, section, h2, h3, span, h4, p, div, figure, main, label, input{
 	/*  @include border(green); */
 	margin:10px 5px;
@@ -133,6 +134,7 @@ body{
 .icon:before{
 	content:'\3000';
 }
+
 header{
 	background-color:$Primary_color;
 	padding:20px 10px;
@@ -151,8 +153,12 @@ input[name='weather-now']{
 article{
 	padding:5px 10px;
 	display:flex;
-	justify-content:flex-start;
 	flex-wrap:wrap;
+}
+.now-container {
+	justify-content: flex-start;
+	flex-wrap: nowrap;
+	flex: 1 1 300px;
 }
 section{
 	padding:5px 10px;
@@ -196,10 +202,18 @@ section{
 	background-color:#00bcd4;
 	color:#000;
 }
-/* //d3.js test */
+
 .chart-container{
 	@include border(lightblue);
 	margin:0 auto;
 	text-align: center;
 }
 
+//点击天气预报按钮显示预测信息区域
+
+#chart-container:not(:target) {
+	display: none;
+}
+#chart-container:target {
+	display: block;
+}

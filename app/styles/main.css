@@ -355,6 +355,8 @@ h1, h2, h3, h4, h5, h6 {
 .button {
   padding: 5px 10px;
   border-radius: 5px;
+  background-color: orange;
+  color: #fff;
   border: none;
   outline: none;
   cursor: pointer; }
@@ -400,8 +402,12 @@ input[name='weather-now'] {
 article {
   padding: 5px 10px;
   display: flex;
-  justify-content: flex-start;
   flex-wrap: wrap; }
+
+.now-container {
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+  flex: 1 1 300px; }
 
 section {
   padding: 5px 10px;
@@ -438,10 +444,15 @@ section {
   background-color: #00bcd4;
   color: #000; }
 
-/* //d3.js test */
 .chart-container {
   border: 1px solid lightblue;
   margin: 0 auto;
   text-align: center; }
+
+#chart-container:not(:target) {
+  display: none; }
+
+#chart-container:target {
+  display: block; }
 
 /*# sourceMappingURL=main.css.map */

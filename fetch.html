@@ -28,6 +28,7 @@
 
         #element {
             animation: scale 1s 0s 1 ease-in-out;
+            /* position: absolute; */
         }
 
         @keyframes scale {
@@ -39,6 +40,23 @@
             }
 
         }
+
+        .spin {
+            width: 100px;
+            height: 100px;
+            display: inline-block;
+            background-color: red;
+        }
+
+       div.spin {
+            animation: spin 1000ms linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg) }
+            100% { transform: rotate(360deg) }
+        } 
+
     </style>
 </head>
 <body>
@@ -58,6 +76,7 @@
 <div class="progress"><div></div></div>
 <p>Scroll me up...</p>
 <button id="element">事件处理函数上下文</button>
+<!-- <div class="spin"></div> -->
 <script>
 //mousemove事件
 
@@ -97,40 +116,40 @@
     bar.style.width = percent + '%';
   }, false);
 // get the data using fetch
-    // fetch('./data/data.json')
-    //     .then(
-    //             function(response) {
-    //                 if(response.status != 200) {
-    //                     console.log('some error happens.Status Code:' + response.status);
-    //                     return;
-    //                 }
+//     fetch('./data/data.json')
+//         .then(
+//                 function(response) {
+//                     if(response.status != 200) {
+//                         console.log('some error happens.Status Code:' + response.status);
+//                         return;
+//                     }
 
-    //                 response.json().then(function(data) {
-    //                     for( let i of response.headers) {
+//                     response.json().then(function(data) {
+//                         for( let i of response.headers) {
 
-    //                         console.log(i);
-    //                     }
+//                             console.log(i);
+//                         }
 
-    //                     console.log(data);
-    //                 });
-    //             }
+//                         console.log(data);
+//                     });
+//                 }
 
-    //         )
-    //     .catch(function(err) {
-    //         console.log('Fetch Error: -S', err);
-    //     });
+//             )
+//         .catch(function(err) {
+//             console.log('Fetch Error: -S', err);
+//         });
 
 
-    //    fetch('./app/images/Weather_wind.png')
-    //         .then(function(response) {
-    //             return response.blob();
-    //         }) 
-    //         .then(function(imageBlob) {
+       // fetch('./app/images/Weather_wind.png')
+       //      .then(function(response) {
+       //          return response.blob();
+       //      }) 
+       //      .then(function(imageBlob) {
 
-    //             console.log(URL.createObjectURL);
-    //             document.querySelector('img').src = URL.createObjectURL(imageBlob);
+       //          console.log(URL.createObjectURL);
+       //          document.querySelector('img').src = URL.createObjectURL(imageBlob);
 
-    //         });
+       //      });
 
 
 // navigator

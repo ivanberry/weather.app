@@ -20,7 +20,7 @@ el.addEventListener('click', function() {
     }
 
     //get the data
-    fetch(URL_CURRENT + '?q=' + input.value + '&APPID=' + APPID)
+    fetch(URL_CURRENT + '?q=' + input.value + '&APPID=' + APPID + '&lang=zh_cn')
         .then(responseJson)
         .then(getDataSuccess)
         .catch(function(error) {
@@ -74,7 +74,7 @@ function dateConventor(UNIX_stamps) {
 function createWeatherCard(name) {
     var city = name;
     var card = '<h3 class="city-name"></h3><div class="now-details"><div class="flex"><img class="icon weather-icon"><div class="temp_details"><span class="now-number">22</span><span>℃</span></div></div><div class="now-weather"><h3 class="now-humidity">湿度<span></span></h3><h3 class="now-wind-speed">风级<span></span></h3></div></div><div class="now-description"><span class="data-get-time">the time get the data</span><p class="data-description">data description about the weather now</p></div>';
-    var button = '<button class=forcase-test-button>详情</button>';
+    var button = '';
     if (!position) {
         article.insertAdjacentHTML('afterbegin', '<section class="button now " >' + card + button + '</section>');
         sections = document.querySelectorAll('section.now');
@@ -186,7 +186,7 @@ document.getElementById('chart').addEventListener('click', function() {
     //get test data
 
     // fetch('./data/data.json')
-	fetch(URL_FORECAST+ '?q=' + input.value + '&APPID=' + APPID + '&lang=zh-cn')
+	fetch(URL_FORECAST+ '?q=' + input.value + '&APPID=' + APPID + '&lang=zh_cn')
         .then(responseJson)
         .then(chartInit)
         .catch(function(error) {
@@ -201,4 +201,6 @@ document.getElementById('chart').addEventListener('click', function() {
 function responseJson(response) {
     return response.json();
 }
+
+
 
